@@ -5,7 +5,7 @@ def record():
     FORMAT = pyaudio.paInt16
     CHANNELS = 1
     RATE = 44100
-    CHUNK = 4800
+    CHUNK = 48000
     RECORD_SECONDS = 5
     WAVE_OUTPUT_FILENAME = "file.wav"
     
