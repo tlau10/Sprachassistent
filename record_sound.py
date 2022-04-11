@@ -43,6 +43,7 @@ def get_device_info():
 
 def main():
     get_device_info()
+    record()
 
 if __name__ == "__main__":
     main()
