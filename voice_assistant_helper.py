@@ -13,11 +13,11 @@ def get_next_audio_frame(sample_rate, frames):
 
     audio = pyaudio.PyAudio()
     audio_stream = audio.open(
-        rate = sample_rate,
+        rate = 44100,
         channels = 1,
         format = pyaudio.paInt16,
         input = True,
-        frames_per_buffer = frames,
+        frames_per_buffer = 2048,
         input_device_index = 1
     )
 
