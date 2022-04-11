@@ -17,7 +17,8 @@ def get_next_audio_frame(sample_rate, frames):
         channels = 1,
         format = pyaudio.paInt16,
         input = True,
-        frames_per_buffer = frames
+        frames_per_buffer = frames,
+        input_device_index = 1
     )
 
     audio_frame = audio_stream.read(frames)
