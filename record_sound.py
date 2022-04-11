@@ -44,5 +44,5 @@ def get_device_info():
 def main():
     get_device_info()
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()
