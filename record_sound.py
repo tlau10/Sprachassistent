@@ -14,7 +14,7 @@ def record():
     # start Recording
     stream = audio.open(format=FORMAT, channels=CHANNELS,
                     rate=RATE, input=True,
-                    frames_per_buffer=CHUNK, input_device_index=3)
+                    frames_per_buffer=CHUNK, input_device_index=1)
     print("recording...")
     frames = []
     
