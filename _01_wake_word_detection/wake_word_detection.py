@@ -1,12 +1,18 @@
 import pvporcupine
-from voice_assistant_helper import get_next_audio_frame, play_notification_sound
+from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_key_file
 from datetime import datetime
 from decouple import config
+import os
 
 class WakeWordDetection:
     def __init__(self):
-        access_key = config('PICOVOICE_ACCESS_KEY')
-        keyword_file_path = config('PORCUPINE_KEYWORD_PATH')
+        access_key = read_key_file(config('PICOVOICE_ACCESS_KEY_PATH'))
+
+        if os.uname()[4].startswith("arm"):
+            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_PI')
+        else:
+            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_LINUX')
+
         model_file_path = config('PORCUPINE_MODEL_PATH')
         self.porcupine = Porcupine(access_key=access_key, keyword_file_path=keyword_file_path, model_file_path=model_file_path)
 

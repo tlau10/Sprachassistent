@@ -49,3 +49,12 @@ def play_notification_sound(file_path):
         audio_data = file.readframes(chunk_size)
 
     audio.close(audio_output)
+
+def read_key_file(file_path):
+    """
+    reads key from given file
+    @param file path: relative path of key file
+    @retur: key
+    """
+    file = open(file_path, "r")
+    return file.read()
