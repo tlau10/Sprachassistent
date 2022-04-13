@@ -1,5 +1,5 @@
 import pvporcupine
-from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_key_file
+from voice_assistant_helper import AudioStreamReader, play_notification_sound, read_key_file
 from datetime import datetime
 from decouple import config
 import os
@@ -16,23 +16,27 @@ class WakeWordDetection:
         model_file_path = config('PORCUPINE_MODEL_PATH')
         self.porcupine = Porcupine(access_key=access_key, keyword_file_path=keyword_file_path, model_file_path=model_file_path)
 
+        rate = self.porcupine.engine.sample_rate
+        frame_length = self.porcupine.engine.frame_length
+        self.audio = AudioStreamReader(sample_rate = rate, frame_length = frame_length)
+
     def start(self):
         """
         start listening to audio stream and look for defined wake word
         """
 
         print("wake word detection listening on audio input...")
-        rate = self.porcupine.engine.sample_rate
-        frame_length = self.porcupine.engine.frame_length
 
         while True:
-            audio_frame = get_next_audio_frame(sample_rate = rate, frames = frame_length)
+            self.audio.setup()
+            audio_frame = self.audio.get_next_audio_frame()
             keyword_index = self.porcupine.engine.process(audio_frame)
 
             if keyword_index == 0:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(f"wake word detected: {timestamp}")
                 play_notification_sound(config('WWD_NOTIFICATION'))
+                self.audio.close()
 
 class Porcupine:
     def __init__(self, access_key, keyword_file_path, model_file_path):

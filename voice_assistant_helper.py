@@ -58,3 +58,41 @@ def read_key_file(file_path):
     """
     file = open(file_path, "r")
     return file.read()
+
+class AudioStreamReader():
+
+    def __init__(self, sample_rate, frame_length):
+        self.audio = pyaudio.PyAudio()
+        self.sample_rate = sample_rate
+        self.frame_length = frame_length
+
+
+    def setup(self):
+        """
+        instantiates pyaudio stream
+        """
+        self.audio_stream = self.audio.open(
+            rate = self.sample_rate,
+            channels = 1,
+            format = pyaudio.paInt16,
+            input = True,
+            frames_per_buffer = self.frame_length
+        )
+
+    def get_next_audio_frame(self):
+        """
+        returns audio frame from microphone
+        @return: next audio frame
+        """
+        audio_frame = self.audio_stream.read(self.frame_length)
+
+        # convert to short datatype
+        audio_frame = struct.unpack_from("h" * self.frame_length, audio_frame)
+
+        return audio_frame
+
+    def close_stream(self):
+        """
+        closes pyaudio stream
+        """
+        self.audio.close()
