@@ -27,16 +27,17 @@ class WakeWordDetection:
 
         print("wake word detection listening on audio input...")
 
+        self.audio.setup()
         while True:
-            self.audio.setup()
             audio_frame = self.audio.get_next_audio_frame()
             keyword_index = self.porcupine.engine.process(audio_frame)
-            self.audio.close_stream()
 
             if keyword_index == 0:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(f"wake word detected: {timestamp}")
                 play_notification_sound(config('WWD_NOTIFICATION'))
+                break
+        self.audio.close_stream()
 
 class Porcupine:
     def __init__(self, access_key, keyword_file_path, model_file_path):
