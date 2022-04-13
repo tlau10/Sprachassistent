@@ -95,4 +95,4 @@ class AudioStreamReader():
         """
         closes pyaudio stream
         """
-        self.audio.close()
+        self.audio.close(self.audio_stream)
