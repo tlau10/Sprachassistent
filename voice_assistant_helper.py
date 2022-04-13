@@ -2,6 +2,7 @@ import pyaudio
 import struct
 from decouple import config
 import wave
+from pvrecorder import PvRecorder
 
 def get_next_audio_frame(sample_rate, frames):
     """
@@ -58,3 +59,12 @@ def read_key_file(file_path):
     """
     file = open(file_path, "r")
     return file.read()
+
+def get_next_audio_frame_pvrecorder(frame_length):
+    recorder = PvRecorder(
+        device_index = 1,
+        frame_length = frame_length
+    )
+
+    recorder.start()
+    return recorder.read()
