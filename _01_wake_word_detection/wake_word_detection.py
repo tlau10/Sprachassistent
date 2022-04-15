@@ -8,10 +8,10 @@ class WakeWordDetection:
     def __init__(self):
         access_key = read_key_file(config('PICOVOICE_ACCESS_KEY_PATH'))
 
-        if os.uname()[4].startswith("arm"):
-            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_PI')
-        else:
+        if os.uname().machine == "x86_64":
             keyword_file_path = config('PORCUPINE_KEYWORD_PATH_LINUX')
+        else:
+            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_PI')
 
         model_file_path = config('PORCUPINE_MODEL_PATH')
         self.porcupine = Porcupine(access_key=access_key, keyword_file_path=keyword_file_path, model_file_path=model_file_path)
