@@ -1,3 +1,0 @@
-pyaudio==0.2.11
-pvporcupine==2.1.0
-python-decouple==3.6
