@@ -8,7 +8,7 @@ import wave
 import webrtcvad
 from halo import Halo
 from scipy import signal
-from voice_assistant_helper import write_to_file
+import voice_assistant_helper
 
 logging.basicConfig(level=20)
 
@@ -194,7 +194,7 @@ def main(ARGS):
                 wav_data = bytearray()
             text = stream_context.finishStream()
             print("Recognized: %s" % text)
-            write_to_file(file_path = '_02_speech_to_text/stt.txt', text = text)
+            voice_assistant_helper.write_to_file(file_path = "_02_speech_to_text/stt.txt", text = text)
             return
 
 if __name__ == '__main__':

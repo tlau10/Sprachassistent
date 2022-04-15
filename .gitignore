@@ -2,6 +2,8 @@
 file.wav
 picovoice.key
 _02_speech_to_text/.venv
+_02_speech_to_text/stt_audio
+_02_speech_to_text/stt.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
