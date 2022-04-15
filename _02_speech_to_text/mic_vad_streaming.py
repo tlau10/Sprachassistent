@@ -1,3 +1,7 @@
+"""
+Mozilla DeepSpeech
+GitHub repository: https://github.com/mozilla/DeepSpeech-examples/blob/r0.9/mic_vad_streaming/README.rst
+"""
 import time, logging
 from datetime import datetime
 import threading, collections, queue, os, os.path
@@ -8,6 +12,7 @@ import wave
 import webrtcvad
 from halo import Halo
 from scipy import signal
+from decouple import config
 import voice_assistant_helper
 
 logging.basicConfig(level=20)
@@ -194,7 +199,7 @@ def main(ARGS):
                 wav_data = bytearray()
             text = stream_context.finishStream()
             print("Recognized: %s" % text)
-            voice_assistant_helper.write_to_file(file_path = "_02_speech_to_text/stt.txt", text = text)
+            voice_assistant_helper.write_to_file(file_path = config('STT_FILE_PATH'), text = text)
             return
 
 if __name__ == '__main__':

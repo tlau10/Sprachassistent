@@ -59,37 +59,6 @@ def read_key_file(file_path):
     file = open(file_path, "r")
     return file.read()
 
-def record_audio(duration, sample_rate, frames):
-    """
-    records wav file from audio
-    @param duration: amount of seconds to record
-    """
-    format = pyaudio.paInt16
-    audio = pyaudio.PyAudio()
-    audio_stream = audio.open(
-        rate = sample_rate,
-        channels = 1,
-        format = format,
-        input = True,
-        frames_per_buffer = frames
-    )
-
-    audio_frames = list()
-    for i in range(0, int(sample_rate / frames * duration)):
-        audio_data = audio_stream.read(frames)
-        audio_frames.append(audio_data)
-
-    audio_stream.stop_stream()
-    audio_stream.close()
-    audio.terminate()
-
-    wave_file = wave.open('in.wav', 'wb')
-    wave_file.setnchannels(1)
-    wave_file.setsampwidth(audio.get_sample_size(format))
-    wave_file.setframerate(sample_rate)
-    wave_file.writeframes(b''.join(audio_frames))
-    wave_file.close()
-
 def write_to_file(file_path, text):
     """
     writes text to given file

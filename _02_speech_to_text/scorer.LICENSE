@@ -1,0 +1,16 @@
+The language model scorer supplied in this release was trained on text released in the Multilingual Librispeech (MLS) dataset.
+
+You can cite the data using the following BibTeX entry:
+
+@article{Pratap2020MLSAL,
+  title={MLS: A Large-Scale Multilingual Dataset for Speech Research},
+  author={Vineel Pratap and Qiantong Xu and Anuroop Sriram and Gabriel Synnaeve and Ronan Collobert},
+  journal={ArXiv},
+  year={2020},
+  volume={abs/2012.03411}
+}
+
+The model is released under a CC BY 4.0 license.
+
+https://creativecommons.org/licenses/by/4.0/
+

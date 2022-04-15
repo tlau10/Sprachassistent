@@ -5,6 +5,7 @@ Brlapi==0.6.7
 certifi==2018.8.24
 cffi==1.15.0
 chardet==3.0.4
+colorama==0.4.4
 cryptography==2.6.1
 cupshelpers==1.0
 decorator==4.3.0
@@ -17,10 +18,12 @@ entrypoints==0.3
 enum34==1.1.10
 filelock==3.6.0
 getdevinfo==1.1.1
+halo==0.0.31
 idna==2.6
 importlib-metadata==4.11.3
 keyring==17.1.1
 keyrings.alt==3.1.1
+log-symbols==0.0.14
 louis==3.8.0
 lxml==4.8.0
 notify2==0.3
@@ -36,6 +39,7 @@ pvrecorder==1.0.2
 pvrhino==2.1.0
 pyalsaaudio==0.9.0
 PyAudio==0.2.11
+pybind11==2.9.2
 pycairo==1.16.2
 pycparser==2.21
 pycrypto==2.6.1
@@ -50,6 +54,7 @@ pytz==2021.1
 pyxdg==0.25
 reportlab==3.5.13
 requests==2.21.0
+scipy==1.7.3
 SecretStorage==2.3.1
 six==1.12.0
 slip==0.6.5
@@ -57,9 +62,12 @@ slip.dbus==0.6.5
 sounddevice==0.4.4
 soupsieve==2.3.2
 speak==0.1
+spinners==0.0.24
 sqlparse==0.4.1
+termcolor==1.1.0
 typing-extensions==3.10.0.0
 unattended-upgrades==0.1
 urllib3==1.24.1
 virtualenv==20.14.1
+webrtcvad==2.0.10
 zipp==3.8.0

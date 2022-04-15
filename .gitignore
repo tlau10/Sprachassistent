@@ -1,7 +1,6 @@
 # project files
 file.wav
-picovoice.key
-_02_speech_to_text/.venv
+_01_wake_word_detection/picovoice.key
 _02_speech_to_text/stt_audio
 _02_speech_to_text/stt.txt
 
