@@ -33,6 +33,7 @@ class WakeWordDetection:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(f"wake word detected: {timestamp}")
                 play_notification_sound(config('WWD_NOTIFICATION'))
+                return
 
 class Porcupine:
     def __init__(self, access_key, keyword_file_path, model_file_path):

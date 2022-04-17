@@ -13,7 +13,7 @@ import webrtcvad
 from halo import Halo
 from scipy import signal
 from decouple import config
-import voice_assistant_helper
+from voice_assistant_helper import write_to_file
 
 logging.basicConfig(level=20)
 
@@ -199,7 +199,7 @@ def main(ARGS):
                 wav_data = bytearray()
             text = stream_context.finishStream()
             print("Recognized: %s" % text)
-            voice_assistant_helper.write_to_file(file_path = config('STT_FILE_PATH'), text = text)
+            write_to_file(file_path = config('STT_FILE_PATH'), text = text)
             return
 
 if __name__ == '__main__':

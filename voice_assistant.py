@@ -3,7 +3,7 @@ from _01_wake_word_detection.wake_word_detection import WakeWordDetection
 import os
 
 wake_word_detection = WakeWordDetection()
-#wake_word_detection.start()
+wake_word_detection.start()
 
 os.system('python3 _02_speech_to_text/mic_vad_streaming.py\
     --model _02_speech_to_text/model.pbmm\
