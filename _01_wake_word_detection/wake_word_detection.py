@@ -1,12 +1,12 @@
 import pvporcupine
-from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_key_file
+from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_from_file
 from datetime import datetime
 from decouple import config
 import os
 
 class WakeWordDetection:
     def __init__(self):
-        access_key = read_key_file(config('PICOVOICE_ACCESS_KEY_PATH'))
+        access_key = read_from_file(config('PICOVOICE_ACCESS_KEY_PATH'))
 
         if os.uname().machine == "x86_64":
             keyword_file_path = config('PORCUPINE_KEYWORD_PATH_LINUX')

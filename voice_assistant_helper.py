@@ -51,7 +51,7 @@ def play_notification_sound(file_path):
 
     audio.close(audio_output)
 
-def read_key_file(file_path):
+def read_from_file(file_path):
     """
     reads key from given file
     @param file path: relative path of key file

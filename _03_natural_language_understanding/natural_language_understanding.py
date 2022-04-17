@@ -1,6 +1,6 @@
 from snips_nlu import SnipsNLUEngine
 from snips_nlu.default_configs import CONFIG_DE
-from voice_assistant_helper import read_key_file, read_json_file, write_to_file
+from voice_assistant_helper import read_from_file, read_json_file, write_to_file
 from decouple import config
 import json
 
@@ -13,7 +13,7 @@ class NLU:
         self.snips.engine.fit(dataset)
 
     def parse(self):
-        stt_input = read_key_file(config('STT_FILE_PATH'))
+        stt_input = read_from_file(config('STT_OUTPUT_PATH'))
         result_json = self.snips.engine.parse(stt_input)
         result_json = json.dumps(result_json, indent = 2)
 
