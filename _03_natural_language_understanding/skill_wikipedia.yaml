@@ -1,0 +1,18 @@
+# search intent
+---
+type: intent
+name: search_definition
+slots:
+  - name: term
+    entity: search_term
+utterances:
+  - Was ist ein [term]
+
+# search term entity
+---
+type: entity
+name: search_term
+automatically_extensible: yes
+values:
+  - hase
+  - flugzeug

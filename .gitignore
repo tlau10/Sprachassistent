@@ -3,6 +3,8 @@ file.wav
 _01_wake_word_detection/picovoice.key
 _02_speech_to_text/stt_audio
 _02_speech_to_text/stt.txt
+pyvenv
+_03_natural_language_understanding/output.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

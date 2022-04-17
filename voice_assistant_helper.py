@@ -2,6 +2,7 @@ import pyaudio
 import struct
 from decouple import config
 import wave
+import json
 
 def get_next_audio_frame(sample_rate, frames):
     """
@@ -65,6 +66,10 @@ def write_to_file(file_path, text):
     @param file_path: path to file
     @param text: string to write into file
     """
-    file = open(file_path, "w")
-    file.write(text)
-    file.close()
+    with open(file_path, "w") as file:
+        file.write(text)
+        file.close()
+
+def read_json_file(file_path):
+    with open(file_path, "r") as file:
+        return json.load(file)

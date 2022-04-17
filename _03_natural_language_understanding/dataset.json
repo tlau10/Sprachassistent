@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "search_term": {
+      "automatically_extensible": true,
+      "data": [
+        {
+          "synonyms": [],
+          "value": "hase"
+        },
+        {
+          "synonyms": [],
+          "value": "flugzeug"
+        }
+      ],
+      "matching_strictness": 1.0,
+      "use_synonyms": true
+    }
+  },
+  "intents": {
+    "search_definition": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Was ist ein "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "hase"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "language": "de"
+}
