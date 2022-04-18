@@ -5,11 +5,15 @@
       "data": [
         {
           "synonyms": [],
-          "value": "hase"
+          "value": "hund"
         },
         {
           "synonyms": [],
           "value": "flugzeug"
+        },
+        {
+          "synonyms": [],
+          "value": "rudi v\u00f6ller"
         }
       ],
       "matching_strictness": 1.0,
@@ -27,7 +31,19 @@
             {
               "entity": "search_term",
               "slot_name": "term",
-              "text": "hase"
+              "text": "hund"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Wer ist "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "flugzeug"
             }
           ]
         }

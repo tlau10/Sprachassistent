@@ -13,3 +13,5 @@ os.system('python3 _02_speech_to_text/mic_vad_streaming.py\
 nlu = NLU()
 nlu.train()
 nlu.parse()
+
+os.system('rm -r _02_speech_to_text/stt_audio/*.wav')
