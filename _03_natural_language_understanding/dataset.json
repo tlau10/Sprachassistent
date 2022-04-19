@@ -9,11 +9,7 @@
         },
         {
           "synonyms": [],
-          "value": "flugzeug"
-        },
-        {
-          "synonyms": [],
-          "value": "rudi v\u00f6ller"
+          "value": "john cleese"
         }
       ],
       "matching_strictness": 1.0,
@@ -43,7 +39,7 @@
             {
               "entity": "search_term",
               "slot_name": "term",
-              "text": "flugzeug"
+              "text": "john cleese"
             }
           ]
         }
