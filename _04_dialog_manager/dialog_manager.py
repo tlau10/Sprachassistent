@@ -1,3 +1,4 @@
+from encodings import search_function
 from voice_assistant_helper import read_json_file
 from decouple import config
 import wikipediaapi
@@ -43,12 +44,14 @@ class DialogManager:
             self.run_tts("Zu deinem Suchbegriff konnte leider nichts gefunden werden!")
             return
 
+        search_term = slot_values[0]
+
         wikipedia = wikipediaapi.Wikipedia('de')
-        wikipedia_page = wikipedia.page(slot_values[0])
+        wikipedia_page = wikipedia.page(search_term)
 
         # invalid slot value
         if not wikipedia_page.exists():
-            response = "Zu dem Suchbegriff " + slot_values[0] + " existiert leider kein Wikipedia-Eintrag!"
+            response = "Zu dem Suchbegriff " + search_term + " existiert leider kein Wikipedia-Eintrag!"
             self.run_tts(response)
             return
 
