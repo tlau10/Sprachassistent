@@ -3,38 +3,66 @@ from decouple import config
 import wikipediaapi
 import subprocess
 
-def default():
-    print("No Skill matched")
+class DialogManager:
 
-def execute_wikipedia_skill(slot_values):
-    wikipedia = wikipediaapi.Wikipedia('de')
-    wikipedia_page = wikipedia.page(slot_values[0])
-    page_summary = wikipedia_page.summary
-    first_sentence = page_summary.split('.')[0]
-    first_sentence = '"' + first_sentence + '"'
+    def start(self):
+        """
+        reads json file from nlu, extracts data and calls execute method depending on found intent
+        """
+        intent = read_json_file(config('NLU_OUTPUT_PATH'))
 
-    print(first_sentence)
+        intent_name = intent['intent']['intentName']
+        slots = intent['slots']
 
-    run_tts(first_sentence)
-
-def run_tts(text):
-    output_file_path = config('TTS_OUTPUT_PATH')
-    subprocess.call(['pico2wave', '-l', 'de-DE', '-w', output_file_path, text])
-    subprocess.call(['aplay', output_file_path])
+        slot_values = []
+        for i in slots:
+            slot_values.append(i['rawValue'])
 
 
-intent = read_json_file(config('NLU_OUTPUT_PATH'))
+        intent_to_skill_executor = {
+            'search_definition': self.execute_wikipedia_skill,
+            None : self.execute_no_skill_matched
+        }
+        # call execute method
+        intent_to_skill_executor[intent_name](slot_values)
 
-intent_name = intent['intent']['intentName']
-slots = intent['slots']
-slot_values = []
+    def execute_no_skill_matched(self, slot_values):
+        """
+        is executed if no skill was matched
+        @param slot_values: empty list
+        """
+        self.run_tts("Ich kann dir leider nicht weiterhelfen!")
 
-for i in slots:
-    slot_values.append(i['rawValue'])
+    def execute_wikipedia_skill(self, slot_values):
+        """
+        executes wikipedia skill by retrieving summary from wikipedia-api based on given search term
+        @param slot_values: list of slot values
+        """
+        # no slot value recognized
+        if len(slot_values) == 0:
+            self.run_tts("Zu deinem Suchbegriff konnte leider nichts gefunden werden!")
+            return
 
+        wikipedia = wikipediaapi.Wikipedia('de')
+        wikipedia_page = wikipedia.page(slot_values[0])
 
-intent_to_skill_executor = {
-    'search_definition': execute_wikipedia_skill,
-    '': default
-}
-intent_to_skill_executor[intent_name](slot_values)
+        # invalid slot value
+        if not wikipedia_page.exists():
+            response = "Zu dem Suchbegriff " + slot_values[0] + " existiert leider kein Wikipedia-Eintrag!"
+            self.run_tts(response)
+            return
+
+        page_summary = wikipedia_page.summary
+
+        first_sentence = page_summary.split('.')[0]
+        self.run_tts(first_sentence)
+
+    def run_tts(self, text):
+        """
+        starts tts then plays generated .wav file
+        @param text: text to say
+        """
+        text = '"' + text + '"'
+        output_file_path = config('TTS_OUTPUT_PATH')
+        subprocess.call(['pico2wave', '-l', 'de-DE', '-w', output_file_path, text])
+        subprocess.call(['aplay', output_file_path])
