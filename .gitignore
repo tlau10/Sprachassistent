@@ -2,9 +2,9 @@
 file.wav
 _01_wake_word_detection/picovoice.key
 _02_speech_to_text/stt_audio
-_02_speech_to_text/output.txt
+_02_speech_to_text/stt_output.txt
 pyvenv
-_03_natural_language_understanding/output.json
+_03_natural_language_understanding/nlu_output.json
 commands.txt
 
 # Byte-compiled / optimized / DLL files

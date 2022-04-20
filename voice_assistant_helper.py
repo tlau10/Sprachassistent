@@ -53,9 +53,9 @@ def play_notification_sound(file_path):
 
 def read_from_file(file_path):
     """
-    reads key from given file
-    @param file path: relative path of key file
-    @return: key
+    reads text from given file
+    @param file path: relative path of file
+    @return: text
     """
     file = open(file_path, "r")
     return file.read()
@@ -71,5 +71,10 @@ def write_to_file(file_path, text):
         file.close()
 
 def read_json_file(file_path):
+    """
+    reads from given json file
+    @param file path: relative path of file
+    @return: json object
+    """
     with open(file_path, "r") as file:
         return json.load(file)
