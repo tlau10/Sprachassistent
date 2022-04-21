@@ -13,7 +13,7 @@ dialog_manager = DialogManager()
 while TRUE:
     wake_word_detection.start()
 
-    subprocess.check_call(['python3', '_02_speech_to_text/mic_vad_streaming.py',
+    subprocess.call(['python3', '_02_speech_to_text/mic_vad_streaming.py',
     '--model', config('STT_MODEL_PATH'), '--scorer', config('STT_SCORER_PATH'),
     '--savewav', config('STT_WAV_OUTPUT_PATH')])
 
