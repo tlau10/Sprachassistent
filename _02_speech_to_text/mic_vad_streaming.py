@@ -199,7 +199,7 @@ def main(ARGS):
                 wav_data = bytearray()
             text = stream_context.finishStream()
             print("Recognized: %s" % text)
-            write_to_file(file_path = config('STT_OUTPUT_PATH'), text = text)
+            #write_to_file(file_path = config('STT_OUTPUT_PATH'), text = text)
             return
 
 if __name__ == '__main__':

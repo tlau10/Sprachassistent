@@ -44,6 +44,24 @@
           ]
         }
       ]
+    },
+    "stop": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "stop"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "h\u00f6re auf"
+            }
+          ]
+        }
+      ]
     }
   },
   "language": "de"

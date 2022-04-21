@@ -4,13 +4,19 @@ from _03_natural_language_understanding.natural_language_understanding import NL
 from _04_dialog_manager.dialog_manager import DialogManager
 import subprocess
 from decouple import config
+import _thread
+import threading
 
 # init
 wake_word_detection = WakeWordDetection()
 nlu = NLU()
 dialog_manager = DialogManager()
 
-while TRUE:
+def kill_all():
+    for thread in threading.enumerate():
+        thread.kill()
+
+while True:
     wake_word_detection.start()
 
     subprocess.call(['python3', '_02_speech_to_text/mic_vad_streaming.py',
@@ -20,4 +26,5 @@ while TRUE:
     nlu.train()
     nlu.parse()
 
-    dialog_manager.start()
+    if not _thread.start_new_thread(dialog_manager.start, ()):
+        kill_all()
