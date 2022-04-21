@@ -8,6 +8,7 @@ from decouple import config
 # init
 wake_word_detection = WakeWordDetection()
 nlu = NLU()
+nlu.train()
 dialog_manager = DialogManager()
 
 while TRUE:
@@ -17,7 +18,6 @@ while TRUE:
     '--model', config('STT_MODEL_PATH'), '--scorer', config('STT_SCORER_PATH'),
     '--savewav', config('STT_WAV_OUTPUT_PATH')])
 
-    nlu.train()
     nlu.parse()
 
     dialog_manager.start()
