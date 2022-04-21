@@ -44,6 +44,17 @@
           ]
         }
       ]
+    },
+    "stop": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Stop"
+            }
+          ]
+        }
+      ]
     }
   },
   "language": "de"

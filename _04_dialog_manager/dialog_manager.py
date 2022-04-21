@@ -1,7 +1,10 @@
+from concurrent.futures import ProcessPoolExecutor, process
 from voice_assistant_helper import read_json_file
 from decouple import config
 import wikipediaapi
 import subprocess
+import multiprocessing
+from playsound import playsound
 
 class DialogManager:
 
@@ -21,6 +24,7 @@ class DialogManager:
 
         intent_to_skill_executor = {
             'search_definition': self.execute_wikipedia_skill,
+            'stop': self.execute_stop_skill,
             None : self.execute_no_skill_matched
         }
         # call execute method
@@ -59,6 +63,10 @@ class DialogManager:
         first_sentence = page_summary.split('.')[0]
         self.run_tts(first_sentence)
 
+    def execute_stop_skill(self, slot_values):
+        print("voice assistant stopped...")
+        self.run_tts("")
+
     def run_tts(self, text):
         """
         starts tts then plays generated .wav file
@@ -67,4 +75,5 @@ class DialogManager:
         text = '"' + text + '"'
         output_file_path = config('TTS_OUTPUT_PATH')
         subprocess.call(['pico2wave', '-l', 'de-DE', '-w', output_file_path, text])
-        subprocess.call(['aplay', output_file_path])
+        process = multiprocessing.Process(target=playsound, args=(output_file_path, ))
+        process.start()

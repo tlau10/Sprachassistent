@@ -1,0 +1,6 @@
+# stop intent
+---
+type: intent
+name: stop
+utterances:
+  - Stop
