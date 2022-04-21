@@ -1,4 +1,3 @@
-from pickle import TRUE
 from _01_wake_word_detection.wake_word_detection import WakeWordDetection
 from _03_natural_language_understanding.natural_language_understanding import NLU
 from _04_dialog_manager.dialog_manager import DialogManager
@@ -11,7 +10,7 @@ nlu = NLU()
 nlu.train()
 dialog_manager = DialogManager()
 
-while TRUE:
+while True:
     wake_word_detection.start()
 
     subprocess.call(['python3', '_02_speech_to_text/mic_vad_streaming.py',
