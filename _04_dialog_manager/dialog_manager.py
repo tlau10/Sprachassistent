@@ -2,9 +2,6 @@ from voice_assistant_helper import read_json_file
 from _05_text_to_speech.text_to_speech import TextToSpeech
 from decouple import config
 import wikipediaapi
-import subprocess
-import multiprocessing
-from playsound import playsound
 
 class DialogManager:
 
