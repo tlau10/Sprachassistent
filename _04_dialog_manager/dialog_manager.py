@@ -1,4 +1,3 @@
-from concurrent.futures import ProcessPoolExecutor, process
 from voice_assistant_helper import read_json_file
 from decouple import config
 import wikipediaapi
