@@ -8,14 +8,5 @@ This project is created with python3.7.3
 $ clone https://github.com/tlau10/voice_assistant_katja.git
 $ cd /voice_assistant_katja
 $ python3 -m pip install -r pip_requirements.txt
-$ python3 voice_assistant.py
+$ python3 voice_assistant_main.py
 ``` 
-
-## Pico TTS
-```
-sudo apt install libpopt-dev libttspico0
-git clone https://github.com/naggety/picotts.git
-cd picotts/pico
-./autogen.sh && ./configure
-make && make install
-```

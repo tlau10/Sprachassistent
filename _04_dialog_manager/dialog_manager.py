@@ -1,4 +1,5 @@
 from voice_assistant_helper import read_json_file
+from _05_text_to_speech.text_to_speech import TextToSpeech
 from decouple import config
 import wikipediaapi
 import subprocess
@@ -71,8 +72,6 @@ class DialogManager:
         starts tts then plays generated .wav file
         @param text: text to say
         """
-        text = '"' + text + '"'
-        output_file_path = config('TTS_OUTPUT_PATH')
-        subprocess.call(['pico2wave', '-l', 'de-DE', '-w', output_file_path, text])
-        process = multiprocessing.Process(target=playsound, args=(output_file_path, ))
-        process.start()
+        tts = TextToSpeech()
+        tts.text_to_wav(text)
+        tts.play_audio()

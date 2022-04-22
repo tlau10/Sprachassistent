@@ -6,7 +6,7 @@ _02_speech_to_text/stt_output.txt
 pyvenv
 _03_natural_language_understanding/nlu_output.json
 commands.txt
-_04_dialog_manager/tts_output.wav
+_05_text_to_speech/tts_output.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
