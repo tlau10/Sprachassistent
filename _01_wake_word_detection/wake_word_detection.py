@@ -5,22 +5,27 @@ from decouple import config
 import os
 
 class WakeWordDetection:
+
     def __init__(self):
         access_key = read_from_file(config('PICOVOICE_ACCESS_KEY_PATH'))
 
         if os.uname().machine == "x86_64":
-            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_LINUX')
+            keyword_path = config('PORCUPINE_KEYWORD_PATH_LINUX')
         else:
-            keyword_file_path = config('PORCUPINE_KEYWORD_PATH_PI')
+            keyword_path = config('PORCUPINE_KEYWORD_PATH_PI')
 
-        model_file_path = config('PORCUPINE_MODEL_PATH')
-        self.porcupine = Porcupine(access_key=access_key, keyword_file_path=keyword_file_path, model_file_path=model_file_path)
+        model_path = config('PORCUPINE_MODEL_PATH')
+        self.porcupine = Porcupine(
+            access_key = access_key,
+            keyword_path = keyword_path,
+            model_path = model_path
+        )
 
     def start(self):
         """
-        start listening to audio stream and look for defined wake word
+        start listening to audio stream and look for defined wake word,
+        plays notification sound on detected wake word
         """
-
         print("wake word detection listening on audio input...")
         rate = self.porcupine.engine.sample_rate
         frame_length = self.porcupine.engine.frame_length
@@ -36,13 +41,14 @@ class WakeWordDetection:
                 return
 
 class Porcupine:
-    def __init__(self, access_key, keyword_file_path, model_file_path):
+
+    def __init__(self, access_key, keyword_path, model_path):
         self.access_key = access_key
-        self.keyword_file_path = keyword_file_path
-        self.model_file_path = model_file_path
+        self.keyword_path = keyword_path
+        self.model_path = model_path
 
         self.engine = pvporcupine.create(
             access_key = self.access_key,
-            keyword_paths = [keyword_file_path],
-            model_path = self.model_file_path
+            keyword_paths = [keyword_path],
+            model_path = self.model_path
         )
