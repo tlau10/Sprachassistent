@@ -14,15 +14,11 @@ class DialogManager:
         slots = intent['slots']
 
         slot_values = []
-        for i in slots:
-            slot_values.append(i['rawValue'])
+        for slot in slots:
+            slot_values.append(slot['rawValue'])
 
+        # no intent matched
+        if not intent_name:
+            post_event("none", slot_values)
 
-        intent_to_event_listener= {
-            'search_definition': 'wikipedia_search',
-            'stop': 'stop',
-            None : 'none'
-        }
-        # call execute method
-        event = intent_to_event_listener[intent_name]
-        post_event(event, slot_values)
+        post_event(intent_name, slot_values)

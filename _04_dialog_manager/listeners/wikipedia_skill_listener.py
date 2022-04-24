@@ -11,8 +11,12 @@ def handle_wikipedia_search_event(data):
         return
 
     search_term = data[0]
+
+    # replace whitespaces with an underscore and make the first letter of every word uppercase
+    term = search_term.replace(" ", "_").title()
+
     wikipedia = wikipediaapi.Wikipedia('de')
-    wikipedia_page = wikipedia.page(search_term)
+    wikipedia_page = wikipedia.page(term)
 
     # not wikipedia page found
     if not wikipedia_page.exists():
@@ -29,4 +33,4 @@ def setup_wikipedia_event_handlers():
     """
     subcribes all events 
     """
-    subscribe("wikipedia_search", handle_wikipedia_search_event)
+    subscribe("search_definition", handle_wikipedia_search_event)
