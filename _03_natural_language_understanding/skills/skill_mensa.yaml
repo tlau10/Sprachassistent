@@ -1,0 +1,19 @@
+# mensa intent
+---
+type: intent
+name: mensa
+slots:
+  - name: menu_type
+    entity: menu_type
+utterances:
+  - Was ist das [menu_type] Menu
+  - Was gibt es als [menu_type]
+
+# search term entity
+---
+type: entity
+name: menu_type
+automatically_extensible: yes
+values:
+  - Kombinierbar
+  - Seezeit Teller

@@ -1,0 +1,20 @@
+# play music intent
+---
+type: intent
+name: play_music
+slots:
+  - name: radio_station
+    entity: radio_station
+utterances:
+  - Spiele [radio_station]
+  - Spiele den Radiosender [radio_station]
+
+# song_title entity
+---
+type: entity
+name: radio_station
+automatically_extensible: yes
+values:
+  - SWR
+  - Antenne 1
+  - Seefunk

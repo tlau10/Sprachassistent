@@ -1,5 +1,39 @@
 {
   "entities": {
+    "menu_type": {
+      "automatically_extensible": true,
+      "data": [
+        {
+          "synonyms": [],
+          "value": "Kombinierbar"
+        },
+        {
+          "synonyms": [],
+          "value": "Seezeit Teller"
+        }
+      ],
+      "matching_strictness": 1.0,
+      "use_synonyms": true
+    },
+    "radio_station": {
+      "automatically_extensible": true,
+      "data": [
+        {
+          "synonyms": [],
+          "value": "SWR"
+        },
+        {
+          "synonyms": [],
+          "value": "Antenne 1"
+        },
+        {
+          "synonyms": [],
+          "value": "Seefunk"
+        }
+      ],
+      "matching_strictness": 1.0,
+      "use_synonyms": true
+    },
     "search_term": {
       "automatically_extensible": true,
       "data": [
@@ -17,6 +51,65 @@
     }
   },
   "intents": {
+    "mensa": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Was ist das "
+            },
+            {
+              "entity": "menu_type",
+              "slot_name": "menu_type",
+              "text": "Kombinierbar"
+            },
+            {
+              "text": " Menu"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es als "
+            },
+            {
+              "entity": "menu_type",
+              "slot_name": "menu_type",
+              "text": "Seezeit Teller"
+            }
+          ]
+        }
+      ]
+    },
+    "play_music": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Spiele "
+            },
+            {
+              "entity": "radio_station",
+              "slot_name": "radio_station",
+              "text": "SWR"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Spiele den Radiosender "
+            },
+            {
+              "entity": "radio_station",
+              "slot_name": "radio_station",
+              "text": "Antenne 1"
+            }
+          ]
+        }
+      ]
+    },
     "search_definition": {
       "utterances": [
         {
