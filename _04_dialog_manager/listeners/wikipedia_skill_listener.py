@@ -2,6 +2,8 @@ from _04_dialog_manager.event import subscribe, post_event
 import wikipediaapi
 import re
 
+REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
+
 def handle_wikipedia_search_event(data):
     """
     retrieves page from wikipedia api then posts speech-to-text event
@@ -26,7 +28,7 @@ def handle_wikipedia_search_event(data):
         return
 
     page_summary = wikipedia_page.summary
-    page_summary = re.sub("\(.*?\)", "", page_summary)
+    page_summary = re.sub(REGEX_FIND_PARENTHESIS_PAIRS, "", page_summary)
 
     first_sentence = page_summary.split('.')[0]
     post_event("text_to_speech", first_sentence)
