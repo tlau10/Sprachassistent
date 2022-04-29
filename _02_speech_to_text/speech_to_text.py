@@ -22,13 +22,11 @@ class SpeechToText:
     def __init__(self):
         model_path = config('STT_MODEL_PATH')
         scorer_path = config('STT_SCORER_PATH')
-        wav_output_path = config('STT_WAV_OUTPUT_PATH')
         text_output_path = config('STT_OUTPUT_PATH')
 
         self.deep_speech = DeepSpeech(
             model_path = model_path, 
             scorer_path = scorer_path, 
-            wav_output_path = wav_output_path,
             text_output_path = text_output_path)
 
     def start(self):
@@ -49,22 +47,15 @@ class SpeechToText:
         # Stream from microphone to DeepSpeech using VAD
         spinner = Halo(spinner='line')
         stream_context = self.deep_speech.engine.createStream()
-        wav_data = bytearray()
-        wav_path = self.deep_speech.wav_output_path
         text_path = self.deep_speech.text_output_path
         for frame in frames:
             if frame is not None:
                 if spinner: spinner.start()
                 logging.debug("streaming frame")
                 stream_context.feedAudioContent(np.frombuffer(frame, np.int16))
-                if wav_path: 
-                    wav_data.extend(frame)
             else:
                 if spinner: spinner.stop()
                 logging.debug("end utterence")
-                if wav_path:
-                    vad_audio.write_wav(os.path.join(wav_path, datetime.now().strftime("savewav_%Y-%m-%d_%H-%M-%S_%f.wav")), wav_data)
-                    wav_data = bytearray()
                 text = stream_context.finishStream()
                 print("speech-to-text recognized: %s" % text)
                 write_to_file(file_path = text_path, text = text)
@@ -72,10 +63,9 @@ class SpeechToText:
 
 class DeepSpeech:
 
-    def __init__(self, model_path, scorer_path, wav_output_path, text_output_path):
+    def __init__(self, model_path, scorer_path, text_output_path):
         self.model_path = model_path
         self.scorer_path = scorer_path
-        self.wav_output_path = wav_output_path
         self.text_output_path = text_output_path
 
         self.engine = deepspeech.Model(
