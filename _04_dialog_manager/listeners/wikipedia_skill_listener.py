@@ -7,7 +7,8 @@ REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
 def handle_wikipedia_search_event(data):
     """
     retrieves page from wikipedia api then posts speech-to-text event
-    @param data: term to search for on wikipedia"""
+    @param data: term to search for on wikipedia
+    """
     if len(data) == 0:
         response = "Zu deinem Suchbegriff konnte leider nichts gefunden werden!"
         post_event("text_to_speech", response)
@@ -23,7 +24,7 @@ def handle_wikipedia_search_event(data):
 
     # not wikipedia page found
     if not wikipedia_page.exists():
-        response = "Zu dem Suchbegriff " + search_term + " existiert leider kein Wikipedia-Eintrag!"
+        response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
         post_event("text_to_speech", response)
         return
 

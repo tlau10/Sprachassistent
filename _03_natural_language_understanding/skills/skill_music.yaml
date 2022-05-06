@@ -1,0 +1,19 @@
+# music intent
+---
+type: intent
+name: play_radio_station
+slots:
+  - name: radio_station
+    entity: radio_station
+utterances:
+  - Spiele [radio_station]
+  - Spiele Radio
+
+# radio station entity
+---
+type: entity
+name: radio_station
+automatically_extensible: yes
+values:
+  - SWR
+  - WDR
