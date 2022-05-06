@@ -26,7 +26,7 @@ def handle_play_radio_station_event(data):
             response = f"Der Radiosender {station_name} existiert leider nicht!"
             post_event("text_to_speech", response)
             return
-        station_url = radio_station[3]['url']
+        station_url = radio_station[0]['url']
 
     print(station_url)
 
