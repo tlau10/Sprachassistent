@@ -1,8 +1,13 @@
 from _04_dialog_manager.event import post_event
+from _04_dialog_manager.observer import setup_event_handlers
 from voice_assistant_helper import read_json_file
 from decouple import config
 
 class DialogManager:
+
+    def __init__(self):
+        # setup all event handlers
+        setup_event_handlers()
 
     def start(self):
         """
