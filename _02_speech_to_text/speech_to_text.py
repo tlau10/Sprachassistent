@@ -14,13 +14,19 @@ from halo import Halo
 from scipy import signal
 from decouple import config
 from voice_assistant_helper import write_to_file
+import os
 
 logging.basicConfig(level=20)
 
 class SpeechToText:
 
     def __init__(self):
-        model_path = config('STT_MODEL_PATH')
+
+        if os.uname().machine == "x86_64":
+            model_path = config('STT_MODEL_PATH_LINUX')
+        else:
+            model_path = config('STT_MODEL_PATH_PI')
+
         scorer_path = config('STT_SCORER_PATH')
         text_output_path = config('STT_OUTPUT_PATH')
 
