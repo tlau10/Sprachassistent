@@ -2,7 +2,6 @@ from _04_dialog_manager.event import subscribe, post_event
 from voice_assistant_helper import read_from_file, write_json_file
 import subprocess
 import execjs
-import json
 from datetime import date, timedelta
 
 SEEZEIT_URL = "https://seezeit.com/essen/speiseplaene/mensa-htwg/"
