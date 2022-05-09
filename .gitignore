@@ -7,6 +7,8 @@ pyvenv
 _03_natural_language_understanding/nlu_output.json
 commands.txt
 _05_text_to_speech/tts_output.wav
+_04_dialog_manager/mensa_parser/seezeit_page.html
+_04_dialog_manager/mensa_parser/menue.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -136,3 +138,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# JS files
+package.json
+package-lock.json
+node_modules

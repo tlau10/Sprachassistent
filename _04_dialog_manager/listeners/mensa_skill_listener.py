@@ -2,16 +2,21 @@ from _04_dialog_manager.event import subscribe, post_event
 from voice_assistant_helper import read_from_file, write_to_file
 import subprocess
 import execjs
+import json
 from datetime import date, timedelta
 
 SEEZEIT_URL = "https://seezeit.com/essen/speiseplaene/mensa-htwg/"
 JS_FILE_PATH = "_04_dialog_manager/mensa_parser/parserDateHelper.js"
-HTML_FILE_PATH = "04_dialog_manager/mensa_parser/seezeit_page.html"
-JSON_FILE_PATH = "04_dialog_manager/mensa_parser/menue.json"
+HTML_FILE_PATH = "_04_dialog_manager/mensa_parser/seezeit_page.html"
+JSON_FILE_PATH = "_04_dialog_manager/mensa_parser/menue.json"
 
-def handle_menue_search_event(data):
+def handle_menue_search_event(slots):
     """
     """
+    # only call once a week
+    #get_html_page()
+    #execute_js()
+
     # get date
     # if date empty assume current day
     # if date "morgen" assume current day+1
@@ -61,10 +66,19 @@ def execute_js():
     js = read_from_file(JS_FILE_PATH)
     html = read_from_file(HTML_FILE_PATH)
 
+    # compile JS and call function
     js_ctx = execjs.compile(js)
     json_object = js_ctx.call("getData", html)
 
-    write_to_file(JSON_FILE_PATH, json_object)
+    # generate dict of json objects 'date' : 'object'
+    json_data = dict()
+    for obj in json_object:
+        json_data[obj['Date']] = obj
+    
+    # convert dict to one json object
+    obj = json.dumps(json_data, indent = 2)
+    write_to_file(file_path = JSON_FILE_PATH, text = obj)
+
 
 def setup_mensa_event_handlers():
     """

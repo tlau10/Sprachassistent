@@ -29,8 +29,7 @@ function getSpeiseplan(dollar) {
                 "Price": menuPrice(dollar(this))
             }
         });
-        var json = JSON.stringify(output);
-        allplans.push(json);
+        allplans.push(output);
     }
     return allplans;
 }
