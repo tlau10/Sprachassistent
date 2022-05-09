@@ -2,7 +2,6 @@ from snips_nlu import SnipsNLUEngine
 from snips_nlu.default_configs import CONFIG_DE
 from voice_assistant_helper import read_from_file, read_json_file, write_json_file
 from decouple import config
-import json
 
 class NLU:
 
