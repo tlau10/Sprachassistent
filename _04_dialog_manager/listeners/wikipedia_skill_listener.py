@@ -22,7 +22,7 @@ def handle_wikipedia_search_event(slots):
     wikipedia = wikipediaapi.Wikipedia('de')
     wikipedia_page = wikipedia.page(term)
 
-    # not wikipedia page found
+    # no wikipedia page found
     if not wikipedia_page.exists():
         response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
         post_event("text_to_speech", response)

@@ -57,8 +57,8 @@ def read_from_file(file_path):
     @param file path: relative path of file
     @return: text
     """
-    file = open(file_path, "r")
-    return file.read()
+    with open(file_path, "r") as file:
+        return file.read()
 
 def write_to_file(file_path, text):
     """
