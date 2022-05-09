@@ -1,6 +1,6 @@
 from _04_dialog_manager.event import subscribe, post_event
 
-def handle_none_event(data):
+def handle_none_event(slots = None):
     """
     posts text-to-speech event
     @param data: empty placeholder

@@ -3,14 +3,14 @@ from pyradios import RadioBrowser
 import vlc
 import random
 
-def handle_play_radio_station_event(data):
+def handle_play_radio_station_event(slots):
     """
     retrieves stream url from radio browser api, plays stream using vlc
     @param data: name of radio station to play, plays random german radio station if empty
     """
     radio_browser = RadioBrowser()
 
-    if len(data) == 0:
+    if len(slots) == 0:
         # choose random radio station
         radio_stations = radio_browser.stations_by_countrycode("DE")
         radio_station = random.choice(radio_stations)
@@ -18,7 +18,7 @@ def handle_play_radio_station_event(data):
         station_url = radio_station['url']
     else:
         # retrieve explicit radio station
-        station_name = data[0]
+        station_name = slots['radio_station']
         radio_station = radio_browser.search(name = station_name, name_exact = True)
 
         # no radio station found

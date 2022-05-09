@@ -18,9 +18,10 @@ class DialogManager:
         intent_name = intent['intent']['intentName']
         slots = intent['slots']
 
-        slot_values = []
+        # store slot values in dict 'slotname' : 'slotvalue'
+        slot_values = dict()
         for slot in slots:
-            slot_values.append(slot['rawValue'])
+            slot_values[slot['slotName']] = slot['rawValue']
 
         # no intent matched
         if not intent_name:
