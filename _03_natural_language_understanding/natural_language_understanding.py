@@ -1,6 +1,6 @@
 from snips_nlu import SnipsNLUEngine
 from snips_nlu.default_configs import CONFIG_DE
-from voice_assistant_helper import read_from_file, read_json_file, write_to_file
+from voice_assistant_helper import read_from_file, read_json_file, write_json_file
 from decouple import config
 import json
 
@@ -17,10 +17,8 @@ class NLU:
         """
         stt_output = read_from_file(config('STT_OUTPUT_PATH'))
         result_json = self.snips.engine.parse(stt_output)
-        result_json = json.dumps(result_json, indent = 2)
 
-        print(result_json)
-        write_to_file(file_path = config('NLU_OUTPUT_PATH'), text = result_json)
+        write_json_file(file_path = config('NLU_OUTPUT_PATH'), json_object = result_json)
 
 class Snips:
 

@@ -1,5 +1,5 @@
 from _04_dialog_manager.event import subscribe, post_event
-from voice_assistant_helper import read_from_file, write_to_file
+from voice_assistant_helper import read_from_file, write_json_file
 import subprocess
 import execjs
 import json
@@ -75,9 +75,7 @@ def execute_js():
     for obj in json_object:
         json_data[obj['Date']] = obj
     
-    # convert dict to one json object
-    obj = json.dumps(json_data, indent = 2)
-    write_to_file(file_path = JSON_FILE_PATH, text = obj)
+    write_json_file(file_path = JSON_FILE_PATH, json_object = json_data)
 
 
 def setup_mensa_event_handlers():
