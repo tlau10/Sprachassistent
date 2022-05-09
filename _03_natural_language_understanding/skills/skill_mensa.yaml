@@ -1,0 +1,39 @@
+# menue intent
+---
+type: intent
+name: search_menue
+slots:
+  - name: time
+    entity: point_of_time
+  - name: menue 
+    entity: menue_name
+utterances:
+  - Was gibt es [time] zu essen
+  - Was gibt es [time] am [menue] zu essen
+  - Was gibt es am [menue] [time] zu essen
+
+# point of time entity
+---
+type: entity
+name: point_of_time
+values:
+  - heute
+  - morgen
+  - montag
+  - dienstag
+  - mittwoch
+  - donnerstag
+  - freitag
+  - samstag
+  - sonntag
+
+# menue name entity
+---
+type: entity
+name: menue_name
+values:
+  - [Seezeit, Seezeit-Teller]
+  - hin und weg
+  - kombinierbar
+  - pastastand
+  - beilagen

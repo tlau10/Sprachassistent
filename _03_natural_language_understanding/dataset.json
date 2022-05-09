@@ -1,5 +1,77 @@
 {
   "entities": {
+    "menue_name": {
+      "automatically_extensible": true,
+      "data": [
+        {
+          "synonyms": [
+            "Seezeit-Teller"
+          ],
+          "value": "Seezeit"
+        },
+        {
+          "synonyms": [],
+          "value": "hin und weg"
+        },
+        {
+          "synonyms": [],
+          "value": "kombinierbar"
+        },
+        {
+          "synonyms": [],
+          "value": "pastastand"
+        },
+        {
+          "synonyms": [],
+          "value": "beilagen"
+        }
+      ],
+      "matching_strictness": 1.0,
+      "use_synonyms": true
+    },
+    "point_of_time": {
+      "automatically_extensible": true,
+      "data": [
+        {
+          "synonyms": [],
+          "value": "heute"
+        },
+        {
+          "synonyms": [],
+          "value": "morgen"
+        },
+        {
+          "synonyms": [],
+          "value": "montag"
+        },
+        {
+          "synonyms": [],
+          "value": "dienstag"
+        },
+        {
+          "synonyms": [],
+          "value": "mittwoch"
+        },
+        {
+          "synonyms": [],
+          "value": "donnerstag"
+        },
+        {
+          "synonyms": [],
+          "value": "freitag"
+        },
+        {
+          "synonyms": [],
+          "value": "samstag"
+        },
+        {
+          "synonyms": [],
+          "value": "sonntag"
+        }
+      ],
+      "matching_strictness": 1.0,
+      "use_synonyms": true
+    },
     "radio_station": {
       "automatically_extensible": true,
       "data": [
@@ -78,6 +150,71 @@
               "entity": "search_term",
               "slot_name": "term",
               "text": "john cleese"
+            }
+          ]
+        }
+      ]
+    },
+    "search_menue": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Was gibt es "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "dienstag"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "mittwoch"
+            },
+            {
+              "text": " am "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "hin und weg"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es am "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "kombinierbar"
+            },
+            {
+              "text": " "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "donnerstag"
+            },
+            {
+              "text": " zu essen"
             }
           ]
         }
