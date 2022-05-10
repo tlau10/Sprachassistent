@@ -29,11 +29,13 @@ def handle_menue_search_event(slots):
     explicit_menue = menue_of_day if 'menue' not in slots else menue_of_day[slots['menue']]
 
     # generate text
-    menues = ["Seezeit-Teller", "hin&weg", "KombinierBar", "Pastastand"]
     menue_descriptions = dict()
-    for i in explicit_menue['Menu']:
-        if i in menues:
-            menue_descriptions[i] = explicit_menue['Menu'][i]['Description']
+    for key,value in explicit_menue['Menu'].items():
+        menue_descriptions[key] = value['Description']
+    del menue_descriptions['Pastastand vegetarisch']
+    del menue_descriptions['Beilagen']
+
+    print(menue_descriptions)
 
     response = [f"{key} {menue_descriptions[key]}" for key in menue_descriptions]
     response = "".join(response)
