@@ -61,7 +61,7 @@ $ Python3.7 –m pip install deepspeech-0.9.3-cp37-cp37m-linux_aarch64.whl
 
 ### Install DE language for SnipsNLU
 ``` 
-$ python3.7 -m snips_nlu download de
+$ python -m snips_nlu download de
 ``` 
 
 ### Start the voice assistant
