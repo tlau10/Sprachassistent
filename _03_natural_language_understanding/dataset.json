@@ -5,8 +5,8 @@
       "data": [
         {
           "synonyms": [
-            "Seezeit Teller",
-            "Seezeit"
+            "seezeit teller",
+            "seezeit"
           ],
           "value": "Seezeit-Teller"
         },
@@ -212,7 +212,7 @@
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "Seezeit Teller"
+              "text": "seezeit teller"
             },
             {
               "text": " zu essen"
@@ -227,7 +227,7 @@
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "Seezeit"
+              "text": "seezeit"
             },
             {
               "text": " "

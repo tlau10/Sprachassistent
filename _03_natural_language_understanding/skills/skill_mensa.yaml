@@ -34,7 +34,7 @@ values:
 type: entity
 name: menue_name
 values:
-  - [Seezeit-Teller, Seezeit Teller, Seezeit]
+  - [Seezeit-Teller, seezeit teller, seezeit]
   - [hin&weg, hin und weg]
   - [kombinierBar, kombinierbar, kombinier bar]
   - pastastand

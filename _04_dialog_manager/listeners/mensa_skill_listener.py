@@ -35,7 +35,10 @@ def handle_menue_search_event(slots):
 
     # generate text
     response = [f"{key} {menue_descriptions[key]}" for key in menue_descriptions]
-    if 'menue' in slots:
+
+    chosen_menue = slots.get('menue')
+    available_menues = ["Seezeit-Teller", "hin&weg", "KombinierBar", "Pastastand"]
+    if chosen_menue is not None and chosen_menue in available_menues:
         response = menue_descriptions[slots['menue']]
     else:
         response = "".join(response)
