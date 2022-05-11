@@ -20,7 +20,14 @@ def handle_menue_search_event(slots):
     #execute_js()
 
     # get date of requested day
-    date_ = get_date_of_day_by_name(None) if 'time' not in slots else get_date_of_day_by_name(slots['time'])
+    time = slots.get('time')
+    date_, index = get_date_of_day_by_name(time)
+
+    # check if time is saturday or sunday, and also check index of weekday
+    if time == "samstag" or time == "sonntag" or index == 5 or index == 6:
+        response = f"Am {time} hat die Mensa geschlossen"
+        post_event("text_to_speech", response)
+        return
 
     # retrieve json object for calculated date
     menue = read_json_file(file_path = JSON_FILE_PATH)
@@ -54,16 +61,19 @@ def get_date_of_day_by_name(day_name):
     e.g. day_name="Mittwoch", current_day="12.05.2022" (Donnerstag), 
     returns "18.05.2022" (date of next wednesday)
     @param day_name: name of day
-    @return: date of given day_name as dd.mm
+    @return: tuple (date as dd.mm, index of date) of given day_name
     """
     days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 'samstag' : 5, 'sonntag' : 6}
     date_format = "%d.%m"
 
     if day_name is None or day_name == "heute":
-        return date.today().strftime(date_format)
+        result = date.today().strftime(date_format)
+        index_target = result.weekday()
+        return result, index_target
     elif day_name == "morgen":
         result = date.today() + timedelta(days = 1)
-        return result.strftime(date_format)
+        index_target = result.weekday()
+        return result.strftime(date_format), index_target
 
     index_today = date.today().weekday()
     index_target = days.get(day_name)
@@ -81,7 +91,7 @@ def get_date_of_day_by_name(day_name):
     else:
         result = date.today()
 
-    return result.strftime(date_format)
+    return result.strftime(date_format), index_target
 
 def get_html_page():
     """
