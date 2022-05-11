@@ -55,7 +55,7 @@ def get_date_of_day_by_name(day_name):
     @param day_name: name of day
     @return: date of given day_name as dd.mm
     """
-    days = {'Montag' : 0, 'Dienstag' : 1, 'Mittwoch' : 2, 'Donnerstag' : 3, 'Freitag' : 4, 'Samstag' : 5, 'Sonntag' : 6}
+    days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 'samstag' : 5, 'sonntag' : 6}
     date_format = "%d.%m"
 
     if day_name is None or day_name == "heute":
