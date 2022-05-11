@@ -39,13 +39,9 @@ def handle_menue_search_event(slots):
         response = menue_descriptions[slots['menue']]
     else:
         response = "".join(response)
-    post_event("text_to_speech", response)
 
-    ####
-    # Offene Probleme
-    # Slot Values müssen genau matchen Bsp.: Seezeit-Teller nicht Seezeit oder Seezeit Teller
-    # Response besser formulieren, bisher nur Menuename + Beschreibung
-    ####
+    response = f"Am {date_} gibt es {response}"
+    post_event("text_to_speech", response)
 
 def get_date_of_day_by_name(day_name):
     """
