@@ -21,7 +21,7 @@ class DialogManager:
         # store slot values in dict 'slotname' : 'slotvalue'
         slot_values = dict()
         for slot in slots:
-            slot_values[slot['slotName']] = slot['rawValue']
+            slot_values[slot['slotName']] = slot['value']['value']
 
         # no intent matched
         if not intent_name:

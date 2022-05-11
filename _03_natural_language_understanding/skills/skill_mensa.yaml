@@ -10,8 +10,9 @@ slots:
 utterances:
   - Was gibt es zu essen
   - Was gibt es [time] zu essen
-  - Was gibt es [time] am [menue] zu essen
-  - Was gibt es am [menue] [time] zu essen
+  - Was gibt es [menue] zu essen
+  - Was gibt es [time] [menue] zu essen
+  - Was gibt es [menue] [time] zu essen
 
 # point of time entity
 ---
@@ -33,8 +34,7 @@ values:
 type: entity
 name: menue_name
 values:
-  - [Seezeit, Seezeit-Teller]
-  - hin und weg
-  - kombinierbar
+  - [Seezeit-Teller, seezeit teller, seezeit]
+  - [hin&weg, hin und weg]
+  - [kombinierBar, kombinierbar, kombinier bar]
   - pastastand
-  - beilagen

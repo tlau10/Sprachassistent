@@ -5,25 +5,27 @@
       "data": [
         {
           "synonyms": [
-            "Seezeit-Teller"
+            "seezeit teller",
+            "seezeit"
           ],
-          "value": "Seezeit"
+          "value": "Seezeit-Teller"
         },
         {
-          "synonyms": [],
-          "value": "hin und weg"
+          "synonyms": [
+            "hin und weg"
+          ],
+          "value": "hin&weg"
         },
         {
-          "synonyms": [],
-          "value": "kombinierbar"
+          "synonyms": [
+            "kombinierbar",
+            "kombinier bar"
+          ],
+          "value": "kombinierBar"
         },
         {
           "synonyms": [],
           "value": "pastastand"
-        },
-        {
-          "synonyms": [],
-          "value": "beilagen"
         }
       ],
       "matching_strictness": 1.0,
@@ -172,7 +174,22 @@
             {
               "entity": "point_of_time",
               "slot_name": "time",
-              "text": "dienstag"
+              "text": "heute"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "Seezeit-Teller"
             },
             {
               "text": " zu essen"
@@ -187,15 +204,15 @@
             {
               "entity": "point_of_time",
               "slot_name": "time",
-              "text": "mittwoch"
+              "text": "morgen"
             },
             {
-              "text": " am "
+              "text": " "
             },
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "hin und weg"
+              "text": "seezeit teller"
             },
             {
               "text": " zu essen"
@@ -205,12 +222,12 @@
         {
           "data": [
             {
-              "text": "Was gibt es am "
+              "text": "Was gibt es "
             },
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "kombinierbar"
+              "text": "seezeit"
             },
             {
               "text": " "
@@ -218,7 +235,7 @@
             {
               "entity": "point_of_time",
               "slot_name": "time",
-              "text": "donnerstag"
+              "text": "montag"
             },
             {
               "text": " zu essen"
