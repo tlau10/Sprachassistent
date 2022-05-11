@@ -12,6 +12,8 @@ JSON_FILE_PATH = "_04_dialog_manager/mensa_parser/menue.json"
 
 def handle_menue_search_event(slots):
     """
+    retrieves menue data from json file then generates text and posts speech-to-text event
+    @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     # only call once a week
     #get_html_page()

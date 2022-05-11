@@ -3,7 +3,7 @@ from _04_dialog_manager.event import subscribe, post_event
 def handle_stop_event(slots = None):
     """
     posts text-to-speech event
-    @param data: empty placeholder
+    @param slots: empty placeholder
     """
     post_event("text_to_speech", "")
 

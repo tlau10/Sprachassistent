@@ -6,7 +6,7 @@ import random
 def handle_play_radio_station_event(slots):
     """
     retrieves stream url from radio browser api, plays stream using vlc
-    @param data: name of radio station to play, plays random german radio station if empty
+    @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     radio_browser = RadioBrowser()
 

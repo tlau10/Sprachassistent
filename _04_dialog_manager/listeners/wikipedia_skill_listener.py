@@ -7,7 +7,7 @@ REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
 def handle_wikipedia_search_event(slots):
     """
     retrieves page from wikipedia api then posts speech-to-text event
-    @param data: term to search for on wikipedia
+    @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     if len(slots) == 0:
         response = "Zu deinem Suchbegriff konnte leider nichts gefunden werden!"
