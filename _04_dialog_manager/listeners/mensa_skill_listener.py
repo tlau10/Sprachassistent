@@ -23,23 +23,29 @@ def handle_menue_search_event(slots):
     # retrieve json object for calculated date
     menue = read_json_file(file_path = JSON_FILE_PATH)
     menue_of_day = menue[date_]
-    print(menue_of_day)
 
-    # retrieve json object for given menue from formerly retrieven json object
-    explicit_menue = menue_of_day if 'menue' not in slots else menue_of_day[slots['menue']]
-
-    # generate text
+    # retrieve menue descriptions
     menue_descriptions = dict()
-    for key,value in explicit_menue['Menu'].items():
+    for key,value in menue_of_day['Menu'].items():
         menue_descriptions[key] = value['Description']
     del menue_descriptions['Pastastand vegetarisch']
     del menue_descriptions['Beilagen']
 
     print(menue_descriptions)
 
+    # generate text
     response = [f"{key} {menue_descriptions[key]}" for key in menue_descriptions]
-    response = "".join(response)
+    if 'menue' in slots:
+        response = menue_descriptions[slots['menue']]
+    else:
+        response = "".join(response)
     post_event("text_to_speech", response)
+
+    ####
+    # Offene Probleme
+    # Slot Values müssen genau matchen Bsp.: Seezeit-Teller nicht Seezeit oder Seezeit Teller
+    # Response besser formulieren, bisher nur Menuename + Beschreibung
+    ####
 
 def get_date_of_day_by_name(day_name):
     """
