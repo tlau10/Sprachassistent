@@ -5,9 +5,10 @@
       "data": [
         {
           "synonyms": [
-            "Seezeit-Teller"
+            "Seezeit Teller",
+            "Seezeit"
           ],
-          "value": "Seezeit"
+          "value": "Seezeit-Teller"
         },
         {
           "synonyms": [
@@ -17,9 +18,10 @@
         },
         {
           "synonyms": [
-            "kombinierBar"
+            "kombinierbar",
+            "kombinier bar"
           ],
-          "value": "kombinierbar"
+          "value": "kombinierBar"
         },
         {
           "synonyms": [],
@@ -187,7 +189,7 @@
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "Seezeit"
+              "text": "Seezeit-Teller"
             },
             {
               "text": " zu essen"
@@ -210,7 +212,7 @@
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "Seezeit-Teller"
+              "text": "Seezeit Teller"
             },
             {
               "text": " zu essen"
@@ -225,7 +227,7 @@
             {
               "entity": "menue_name",
               "slot_name": "menue",
-              "text": "hin&weg"
+              "text": "Seezeit"
             },
             {
               "text": " "
