@@ -63,7 +63,7 @@ def read_from_file(file_path):
 def write_to_file(file_path, text):
     """
     writes text to given file
-    @param file_path: path of file
+    @param file_path: relative path of file
     @param text: string to write into file
     """
     with open(file_path, "w") as file:
@@ -82,7 +82,7 @@ def read_json_file(file_path):
 def write_json_file(file_path, json_object):
     """
     writes json object to given file
-    @param file_path: path of file
+    @param file_path: relative path of file
     @param json_object: json object to write into file
     """
     json_object = json.dumps(json_object, indent = 2)
