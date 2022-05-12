@@ -8,6 +8,7 @@ _03_natural_language_understanding/nlu_output.json
 _05_text_to_speech/tts_output.wav
 _04_dialog_manager/mensa_parser/seezeit_page.html
 _04_dialog_manager/mensa_parser/menue.json
+_04_dialog_manager/dialog_manager_output.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

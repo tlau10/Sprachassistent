@@ -6,7 +6,7 @@ def handle_none_event(slots = None):
     @param slots: empty placeholder
     """
     response = "Ich kann dir leider nicht weiterhelfen"
-    post_event("text_to_speech", response)
+    post_event("dialog_manager_output", response)
 
 def setup_none_event_handlers():
     """

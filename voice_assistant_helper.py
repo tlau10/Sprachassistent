@@ -70,6 +70,13 @@ def write_to_file(file_path, text):
         file.write(text)
         file.close()
 
+def append_to_file(file_path, text):
+    """
+    """
+    with open(file_path, "a") as file:
+        file.write(f"{text}\n")
+        file.close()
+
 def read_json_file(file_path):
     """
     reads from given json file

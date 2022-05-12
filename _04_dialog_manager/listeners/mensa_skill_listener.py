@@ -1,4 +1,3 @@
-from webbrowser import get
 from _04_dialog_manager.event import subscribe, post_event
 from voice_assistant_helper import read_from_file, read_json_file, write_json_file
 import subprocess
@@ -26,7 +25,7 @@ def handle_menue_search_event(slots):
     # check if time is saturday or sunday, and also check index of weekday
     if time == "samstag" or time == "sonntag" or index == 5 or index == 6:
         response = f"Am {time} hat die Mensa geschlossen"
-        post_event("text_to_speech", response)
+        post_event("dialog_manager_output", response)
         return
 
     # retrieve json object for calculated date
@@ -53,7 +52,7 @@ def handle_menue_search_event(slots):
         response = "".join(response)
 
     response = f"Am {date_} gibt es {response}"
-    post_event("text_to_speech", response)
+    post_event("dialog_manager_output", response)
 
 def get_date_of_day_by_name(day_name):
     """
@@ -67,9 +66,9 @@ def get_date_of_day_by_name(day_name):
     date_format = "%d.%m"
 
     if day_name is None or day_name == "heute":
-        result = date.today().strftime(date_format)
+        result = date.today()
         index_target = result.weekday()
-        return result, index_target
+        return result.strftime(date_format), index_target
     elif day_name == "morgen":
         result = date.today() + timedelta(days = 1)
         index_target = result.weekday()

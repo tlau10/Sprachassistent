@@ -5,7 +5,7 @@ def handle_stop_event(slots = None):
     posts text-to-speech event
     @param slots: empty placeholder
     """
-    post_event("text_to_speech", "")
+    post_event("dialog_manager_output", "")
 
 def setup_stop_event_handlers():
     """
