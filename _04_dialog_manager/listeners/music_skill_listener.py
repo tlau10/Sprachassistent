@@ -4,7 +4,7 @@ import random
 
 def handle_play_radio_station_event(slots):
     """
-    retrieves stream url from radio browser api, plays stream using vlc
+    retrieves stream url from radio browser api then posts dialog_manager_output event
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     radio_browser = RadioBrowser()

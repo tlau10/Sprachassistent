@@ -3,6 +3,8 @@ from _02_speech_to_text.speech_to_text import SpeechToText
 from _03_natural_language_understanding.natural_language_understanding import NLU
 from _04_dialog_manager.dialog_manager import DialogManager
 from _05_text_to_speech.text_to_speech import TextToSpeech
+import subprocess
+from decouple import config
 
 class VoiceAssistant:
 
@@ -23,7 +25,13 @@ class VoiceAssistant:
             self.nlu.start()
             self.dialog_manager.start()
             self.text_to_speech.start()
-            self.text_to_speech.cleanup()
+            self.data_cleanup()
+
+    def data_cleanup(self):
+        """
+        removes all generated files after the user request is done
+        """
+        subprocess.run(["rm", config('DIALOG_MANAGER_OUTPUT_PATH'), config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')])
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()

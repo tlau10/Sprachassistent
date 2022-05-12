@@ -4,7 +4,7 @@ from decouple import config
 
 def handle_dialog_manager_output_event(data):
     """
-    writes given text to output file
+    appends given text to output file
     @param data: text to write to file
     """
     dialog_manager_output_path = config('DIALOG_MANAGER_OUTPUT_PATH')

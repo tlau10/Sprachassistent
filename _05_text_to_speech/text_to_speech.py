@@ -1,7 +1,6 @@
 from decouple import config
 from picotts import PicoTTS
 import vlc
-import subprocess
 
 class TextToSpeech:
     
@@ -13,27 +12,27 @@ class TextToSpeech:
 
     def start(self):
         """
-        generates wav file from given text then plays wav in a new process
-        @param text: text to translate into audio
+        reads output file from dialog manager and either generates wav file or sets up http stream,
+        then plays audio using vlc
         """
         file = open(self.dialog_manager_output_path)
         for line in file:
+            line = line.rstrip("\n")
+            # set uri depending on line
             if "http" in line:
+                self.vlc_audio_player.stop_audio_player()
                 self.vlc_audio_player.set_uri(line)
             else:
+                self.vlc_audio_player.stop_audio_player()
                 self.vlc_audio_player.set_uri(self.wav_output_path)
 
+                # generate wav file
                 audio = self.picotts.engine.synth_wav(line)
                 with open(self.wav_output_path, mode = 'bw') as wav:
                     wav.write(audio)
 
+            # starts the audio player
             self.vlc_audio_player.start_audio_player()
-
-    def cleanup(self):
-        """
-        """
-        subprocess.run(["rm", self.dialog_manager_output_path])
-
 
 class PicoTTS_:
 
@@ -48,8 +47,24 @@ class VLCAudio:
         self.audio_player = None
 
     def set_uri(self, uri):
+        """
+        starts new media player then sets uri
+        @param uri: path to wav file or url of stream
+        """
         self.audio_player = self.vlc.media_player_new()
         self.audio_player.set_mrl(uri)
 
     def start_audio_player(self):
-        self.audio_player.play()
+        """
+        starts the audio player
+        """
+        if self.audio_player:
+            self.audio_player.play()
+    
+    def stop_audio_player(self):
+        """
+        stops the audio player
+        """
+        if self.audio_player:
+            self.audio_player.stop()
+
