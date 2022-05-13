@@ -7,7 +7,7 @@ COMMAND = "python _04_dialog_manager/mensa_parser/mensa_data_requester.py"
 
 crontab_ = CronTab(user = USER)
 
-if crontab_.find_command('mensa_data_requester.py'):
+if crontab_.find_command(COMMAND):
     print("cron job already exists")
 else:
     print("setting up cron job...")
