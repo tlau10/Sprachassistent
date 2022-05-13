@@ -57,7 +57,8 @@ def get_date_of_day_by_name(day_name):
     days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 'samstag' : 5, 'sonntag' : 6}
     date_format = "%d.%m"
 
-    if day_name is None or day_name == "heute":
+    # return current day if no day_name was given, if it is an invalid day_name or if it is "heute"
+    if day_name is None or day_name not in days or day_name == "heute":
         result = date.today()
         index_target = result.weekday()
         return result.strftime(date_format), index_target
