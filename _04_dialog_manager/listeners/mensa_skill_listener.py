@@ -9,10 +9,6 @@ def handle_menue_search_event(slots):
     retrieves menue data from json file then generates text and posts dialog_manager_output event
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
-    # only call once a week
-    #get_html_page()
-    #execute_js()
-
     # get date of requested day
     time = slots.get('time')
     date_, index = get_date_of_day_by_name(time)

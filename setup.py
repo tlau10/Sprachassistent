@@ -6,6 +6,8 @@ USER = "raspberry"
 COMMAND = "python _04_dialog_manager/mensa_parser/mensa_data_requester.py"
 
 crontab_ = CronTab(user = USER)
+
+# check if cron job already exists
 if crontab_.find_command(COMMAND):
     print("cron job already exists")
 else:
