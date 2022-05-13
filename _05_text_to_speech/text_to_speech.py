@@ -5,7 +5,7 @@ import vlc
 class TextToSpeech:
     
     def __init__(self):
-        self.picotts = PicoTTS_(language = 'de-DE')
+        self.picotts = Pico(language = 'de-DE')
         self.wav_output_path = config('TTS_OUTPUT_PATH')
         self.dialog_manager_output_path = config('DIALOG_MANAGER_OUTPUT_PATH')
         self.vlc_audio_player = VLCAudio()
@@ -34,7 +34,7 @@ class TextToSpeech:
             # starts the audio player
             self.vlc_audio_player.start_audio_player()
 
-class PicoTTS_:
+class Pico:
 
     def __init__(self, language):
         self.engine = PicoTTS()
