@@ -75,5 +75,5 @@ $ cd ..
 
 ### Start the voice assistant
 ``` 
-$ python voice_assistant_main.py
+$ python setup.py
 ``` 
