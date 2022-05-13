@@ -42,11 +42,13 @@ $ wget https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech
 $ pip install deepspeech-0.9.3-cp37-cp37m-linux_aarch64.whl 
 ``` 
 
-### Clone Repository and pull files from git-lfs
+### Clone Repository and get stt files
 ``` 
 $ clone https://github.com/tlau10/voice_assistant_katja.git
 $ cd /voice_assistant_katja
-$ git lfs pull
+$ wget https://www.dropbox.com/s/zrgkz335z0raotb/de-aashishag-1-prune-kenlm.scorer?dl=0 -o _02_speech_to_text/de-aashishag-1-prune-kenlm.scorer
+$ wget https://www.dropbox.com/s/degluxjymq3u6sd/model.tflite?dl=0 -o _02_speech_to_text/model.tflite
+$ wget https://www.dropbox.com/s/mg16a7vi6178998/model.pbmm?dl=0 -o _02_speech_to_text/model.pbmm
 ``` 
 
 ### Install pip packages
