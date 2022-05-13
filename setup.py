@@ -2,7 +2,7 @@ import subprocess
 from crontab import CronTab
 
 # setup and shedule cronjob to receive latest mensa data
-USER = "raspberry"
+USER = "root"
 COMMAND = "python _04_dialog_manager/mensa_parser/mensa_data_requester.py"
 
 crontab_ = CronTab(user = USER)
