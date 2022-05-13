@@ -3,7 +3,7 @@
 ## General info
 This project uses python3.7.<br/>
 
-## Setup on Raspberry PI (tested with Ubuntu 22.04 LTS)
+## Setup on Raspberry PI (tested with Ubuntu 64-bit 22.04 LTS)
 
 ### Install apt packages
 ```
