@@ -15,6 +15,7 @@ def handle_menue_search_event(slots):
 
     # check if time is saturday or sunday, and also check index of weekday
     if time == "samstag" or time == "sonntag" or index == 5 or index == 6:
+        time = "samstag" if index == 5 else "sonntag"
         response = f"Am {time} hat die Mensa geschlossen"
         post_event("dialog_manager_output", response)
         return
