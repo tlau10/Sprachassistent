@@ -75,7 +75,12 @@ $ ZZ
 $ cd ..
 ``` 
 
-### Start the voice assistant
+### Start the voice assistant for the first time
 ``` 
 $ python setup.py
+``` 
+
+### Usual way to start the voice assistant
+``` 
+$ python voice_assistant_main.py
 ``` 

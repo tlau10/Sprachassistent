@@ -7,10 +7,7 @@ COMMAND = "python _04_dialog_manager/mensa_parser/mensa_data_requester.py"
 
 crontab_ = CronTab(user = USER)
 
-print(f"removing all cron job for user {USER}...")
-crontab_.remove_all()
-
-print("setting up cron job...")
+print(f"setting up cron job for user {USER}...")
 
 cron_job = crontab_.new(command = COMMAND)
 cron_job.day.on(6)
