@@ -7,7 +7,7 @@ This project uses python3.7.<br/>
 
 ### Install apt packages
 ```
-$ sudo apt-get install libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev portaudio19-dev python-all-dev gcc npm python3-pip git
+$ sudo apt-get install libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev portaudio19-dev python-all-dev gcc npm python3-pip git vlc
 ```
 
 ### Install Python3.7
