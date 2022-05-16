@@ -63,7 +63,7 @@ $ python -m snips_nlu download de
 
 ### Install Node packages
 ``` 
-$ nmp install axios cheerio
+$ npm install axios cheerio
 ``` 
 
 ### Create picovoice.key file
