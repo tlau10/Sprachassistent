@@ -34,5 +34,5 @@ def execute_js():
 
 
 if __name__ == "__main__":
-    with get_html_page():
-        execute_js()
+    get_html_page()
+    execute_js()
