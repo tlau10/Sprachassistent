@@ -40,11 +40,16 @@ class SpeechToText:
         start streaming audio using vad, generates text file with recognized phrase,
         saves audio to wav file
         """
+        if os.uname().machine == "x86_64":
+            rate = 16000
+        else:
+            rate = 48000
+
         # Start audio with VAD
         vad_audio = VADAudio(
             aggressiveness = 3, 
             device = None, 
-            input_rate = 16000,
+            input_rate = rate,
             file = None
         )
         print("speech-to-text listening...")

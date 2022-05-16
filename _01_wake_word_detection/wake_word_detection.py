@@ -27,7 +27,12 @@ class WakeWordDetection:
         plays notification sound on detected wake word
         """
         print("wake word detection listening on audio input...")
-        rate = self.porcupine.engine.sample_rate
+
+        if os.uname().machine == "x86_64":
+            rate = self.porcupine.engine.sample_rate
+        else:
+            rate = 48000
+
         frame_length = self.porcupine.engine.frame_length
 
         while True:
