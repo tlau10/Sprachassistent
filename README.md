@@ -48,6 +48,17 @@ $ clone https://github.com/tlau10/voice_assistant_katja.git
 $ cd /voice_assistant_katja
 ``` 
 
+### Download .scorer file
+```
+$ wget https://coqui.gateway.scarf.sh/german/AASHISHAG/v0.9.0/de-aashishag-1-prune-kenlm.scorer
+```
+
+### Download .pbmm file and move it to stt folder (only necessary if not on raspberry pi)
+```
+$ wget https://coqui.gateway.scarf.sh/german/AASHISHAG/v0.9.0/model.pbmm
+$ mv <paht_to_.pbmm_file> voice_assistant_katja/_02_speech_to_text 
+```
+
 ### Copy .scorer file to raspberry pi
 ```
 $ scp <path_to_.scorer_file> pi@<ip_address>:/home/pi/voice_assistant_katja/_02_speech_to_text
