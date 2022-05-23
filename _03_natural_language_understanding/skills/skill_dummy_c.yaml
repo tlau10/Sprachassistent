@@ -1,0 +1,6 @@
+# dummy intent c
+---
+type: intent
+name: dummy_c
+utterances:
+  - Beginne test c

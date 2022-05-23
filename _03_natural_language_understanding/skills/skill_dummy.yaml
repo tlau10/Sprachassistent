@@ -1,18 +1,7 @@
-# dummy intent
+# dummy intent a
 ---
 type: intent
 name: dummy_a
 utterances:
   - Beginne test a
 
----
-type: intent
-name: dummy_b
-utterances:
-  - Beginne test b
-
----
-type: intent
-name: dummy_c
-utterances:
-  - Beginne test c
