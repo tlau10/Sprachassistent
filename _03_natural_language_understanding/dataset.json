@@ -106,6 +106,17 @@
     }
   },
   "intents": {
+    "dummy_a": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Beginne test a"
+            }
+          ]
+        }
+      ]
+    },
     "play_radio_station": {
       "utterances": [
         {
