@@ -1,7 +1,6 @@
-import subprocess
 from crontab import CronTab
 
-# removes all cron jobs then setups and shedules cronjob to receive latest mensa data
+# setups and shedules cronjob to receive latest mensa data
 USER = "pi"
 COMMAND = "python _04_dialog_manager/mensa_parser/mensa_data_requester.py"
 
@@ -14,6 +13,3 @@ cron_job.setall('0 0 * * 0')
 crontab_.write()
 
 print("cron job successfully set up")
-
-# start main.py
-subprocess.run(['python', 'voice_assistant_main.py'])
