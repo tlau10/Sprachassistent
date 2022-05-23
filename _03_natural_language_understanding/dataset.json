@@ -84,6 +84,26 @@
         {
           "synonyms": [],
           "value": "WDR"
+        },
+        {
+          "synonyms": [],
+          "value": "Deutschlandfunk"
+        },
+        {
+          "synonyms": [],
+          "value": "Inforadio"
+        },
+        {
+          "synonyms": [],
+          "value": "NDR"
+        },
+        {
+          "synonyms": [],
+          "value": "Antenne Bayern"
+        },
+        {
+          "synonyms": [],
+          "value": "Radio Paloma"
         }
       ],
       "matching_strictness": 1.0,
@@ -94,11 +114,35 @@
       "data": [
         {
           "synonyms": [],
+          "value": "sonne"
+        },
+        {
+          "synonyms": [],
           "value": "hund"
         },
         {
           "synonyms": [],
-          "value": "john cleese"
+          "value": "schuh"
+        },
+        {
+          "synonyms": [],
+          "value": "albert einstein"
+        },
+        {
+          "synonyms": [],
+          "value": "angela merkel"
+        },
+        {
+          "synonyms": [],
+          "value": "katze"
+        },
+        {
+          "synonyms": [],
+          "value": "Beethoven"
+        },
+        {
+          "synonyms": [],
+          "value": "bach"
         }
       ],
       "matching_strictness": 1.0,
@@ -139,7 +183,7 @@
             {
               "entity": "search_term",
               "slot_name": "term",
-              "text": "hund"
+              "text": "sonne"
             }
           ]
         },
@@ -151,7 +195,7 @@
             {
               "entity": "search_term",
               "slot_name": "term",
-              "text": "john cleese"
+              "text": "hund"
             }
           ]
         }
