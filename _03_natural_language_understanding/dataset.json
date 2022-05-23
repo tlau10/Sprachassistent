@@ -117,6 +117,17 @@
         }
       ]
     },
+    "dummy_b": {
+      "utterances": [
+        {
+          "data": [
+            {
+              "text": "Beginne test b"
+            }
+          ]
+        }
+      ]
+    },
     "play_radio_station": {
       "utterances": [
         {
