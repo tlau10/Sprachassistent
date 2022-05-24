@@ -7,7 +7,7 @@ import os
 class WakeWordDetection:
 
     def __init__(self):
-        access_key = read_from_file(config('PICOVOICE_ACCESS_KEY_PATH'))
+        access_key = read_from_file(file_path = config('PICOVOICE_ACCESS_KEY_PATH'))
 
         if os.uname().machine == "x86_64":
             keyword_path = config('PORCUPINE_KEYWORD_PATH_LINUX')
@@ -37,12 +37,12 @@ class WakeWordDetection:
 
         while True:
             audio_frame = get_next_audio_frame(sample_rate = rate, frames = frame_length)
-            keyword_index = self.porcupine.engine.process(audio_frame)
+            keyword_index = self.porcupine.engine.process(pcm = audio_frame)
 
             if keyword_index == 0:
                 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(f"wake word detected: {timestamp}")
-                play_notification_sound(config('WWD_NOTIFICATION'))
+                play_notification_sound(file_path = config('WWD_NOTIFICATION'))
                 return
 
 class Porcupine:

@@ -16,19 +16,19 @@ class TextToSpeech:
         reads output file from dialog manager and either generates wav file or sets up http stream,
         then plays audio using vlc
         """
-        dialog_manager_output = read_from_file(self.dialog_manager_output_path)
+        dialog_manager_output = read_from_file(file_path = self.dialog_manager_output_path)
         print(dialog_manager_output)
 
         # set uri depending on line
         if "http" in dialog_manager_output:
             self.vlc_audio_player.stop_audio_player()
-            self.vlc_audio_player.set_uri(dialog_manager_output)
+            self.vlc_audio_player.set_uri(uri = dialog_manager_output)
         else:
             self.vlc_audio_player.stop_audio_player()
-            self.vlc_audio_player.set_uri(self.wav_output_path)
+            self.vlc_audio_player.set_uri(uri = self.wav_output_path)
 
             # generate wav file
-            audio = self.picotts.engine.synth_wav(dialog_manager_output)
+            audio = self.picotts.engine.synth_wav(txt = dialog_manager_output)
             with open(self.wav_output_path, mode = 'bw') as wav:
                 wav.write(audio)
 

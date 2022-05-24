@@ -12,13 +12,13 @@ def handle_menue_search_event(slots):
     """
     # get date of requested day
     time = slots.get('time')
-    date_, index = get_date_of_day_by_name(time)
+    date_, index = get_date_of_day_by_name(day_name = time)
 
     # check if time is saturday or sunday, and also check index of weekday
     if time == "samstag" or time == "sonntag" or index == 5 or index == 6:
         time = "samstag" if index == 5 else "sonntag"
         response = f"Am {time} hat die Mensa geschlossen"
-        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
+        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
         return
 
     # retrieve json object for calculated date
@@ -50,7 +50,7 @@ def handle_menue_search_event(slots):
         response = "".join(response)
 
     response = f"Am {date_} gibt es {response}"
-    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
+    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
 def get_date_of_day_by_name(day_name):
     """

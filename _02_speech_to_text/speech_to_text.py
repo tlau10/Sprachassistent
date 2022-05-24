@@ -3,7 +3,6 @@ Partly taken from Mozilla DeepSpeech
 GitHub repository: https://github.com/mozilla/DeepSpeech-examples/blob/r0.9/mic_vad_streaming/README.rst
 """
 import logging
-from datetime import datetime
 import collections, queue, os, os.path
 import deepspeech
 import numpy as np

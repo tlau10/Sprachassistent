@@ -13,7 +13,7 @@ def handle_wikipedia_search_event(slots):
     """
     if len(slots) == 0:
         response = "Zu deinem Suchbegriff konnte leider nichts gefunden werden!"
-        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
+        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
         return
 
     search_term = slots['term']
@@ -21,20 +21,20 @@ def handle_wikipedia_search_event(slots):
     # replace whitespaces with an underscore and make the first letter of every word uppercase
     term = search_term.replace(" ", "_").title()
 
-    wikipedia = wikipediaapi.Wikipedia('de')
-    wikipedia_page = wikipedia.page(term)
+    wikipedia = wikipediaapi.Wikipedia(language = 'de')
+    wikipedia_page = wikipedia.page(title = term)
 
     # no wikipedia page found
     if not wikipedia_page.exists():
         response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
-        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
+        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
         return
 
     page_summary = wikipedia_page.summary
     page_summary = re.sub(REGEX_FIND_PARENTHESIS_PAIRS, "", page_summary)
 
     first_sentence = page_summary.split('.')[0]
-    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
+    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
 
 def setup_wikipedia_event_handlers():
     """

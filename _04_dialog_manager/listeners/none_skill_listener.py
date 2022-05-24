@@ -8,7 +8,7 @@ def handle_none_event(slots = None):
     @param slots: empty placeholder
     """
     response = "Ich kann dir leider nicht weiterhelfen"
-    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
+    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
 def setup_none_event_handlers():
     """

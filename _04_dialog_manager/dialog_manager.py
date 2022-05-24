@@ -13,7 +13,7 @@ class DialogManager:
         """
         reads json file from nlu, extracts data and calls execute method depending on found intent
         """
-        intent = read_json_file(config('NLU_OUTPUT_PATH'))
+        intent = read_json_file(file_path = config('NLU_OUTPUT_PATH'))
 
         intent_name = intent['intent']['intentName']
         slots = intent['slots']
