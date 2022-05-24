@@ -28,8 +28,13 @@ def handle_menue_search_event(slots):
     menue_descriptions = dict()
     for key,value in menue_of_day['Menu'].items():
         menue_descriptions[key] = value['Description']
-    del menue_descriptions['Pastastand vegetarisch']
-    del menue_descriptions['Beilagen']
+    
+    # remove menues, who are currently not needed
+    try:
+        del menue_descriptions['Pastastand vegetarisch']
+        del menue_descriptions['Beilagen']
+    except KeyError:
+        pass
 
     print(menue_descriptions)
 
