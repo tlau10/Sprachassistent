@@ -1,17 +1,19 @@
-from _04_dialog_manager.event import subscribe, post_event
+from _04_dialog_manager.event import subscribe
 import wikipediaapi
 import re
+from decouple import config
+from voice_assistant_helper import write_to_file
 
 REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
 
 def handle_wikipedia_search_event(slots):
     """
-    retrieves page from wikipedia api then posts speech-to-text event
+    retrieves page from wikipedia api then writes output to file
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     if len(slots) == 0:
         response = "Zu deinem Suchbegriff konnte leider nichts gefunden werden!"
-        post_event("dialog_manager_output", response)
+        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
         return
 
     search_term = slots['term']
@@ -25,14 +27,14 @@ def handle_wikipedia_search_event(slots):
     # no wikipedia page found
     if not wikipedia_page.exists():
         response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
-        post_event("dialog_manager_output", response)
+        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
         return
 
     page_summary = wikipedia_page.summary
     page_summary = re.sub(REGEX_FIND_PARENTHESIS_PAIRS, "", page_summary)
 
     first_sentence = page_summary.split('.')[0]
-    post_event("dialog_manager_output", first_sentence)
+    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
 
 def setup_wikipedia_event_handlers():
     """

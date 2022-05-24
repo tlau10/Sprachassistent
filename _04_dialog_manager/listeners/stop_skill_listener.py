@@ -1,11 +1,13 @@
-from _04_dialog_manager.event import subscribe, post_event
+from _04_dialog_manager.event import subscribe
+from decouple import config
+from voice_assistant_helper import write_to_file
 
 def handle_stop_event(slots = None):
     """
-    posts dialog_manager_output event
+    writes empty output to file
     @param slots: empty placeholder
     """
-    post_event("dialog_manager_output", "")
+    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = "")
 
 def setup_stop_event_handlers():
     """

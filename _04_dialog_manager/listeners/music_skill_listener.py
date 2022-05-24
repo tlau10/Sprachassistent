@@ -1,10 +1,12 @@
-from _04_dialog_manager.event import subscribe, post_event
+from _04_dialog_manager.event import subscribe
 from pyradios import RadioBrowser
 import random
+from voice_assistant_helper import write_to_file
+from decouple import config
 
 def handle_play_radio_station_event(slots):
     """
-    retrieves stream url from radio browser api then posts dialog_manager_output event
+    retrieves stream url from radio browser api then writes output to file
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     radio_browser = RadioBrowser()
@@ -23,17 +25,13 @@ def handle_play_radio_station_event(slots):
         # no radio station found
         if not radio_station:
             response = f"Der Radiosender {station_name} existiert leider nicht!"
-            post_event("dialog_manager_output", response)
+            write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
             return
         station_url = radio_station[0]['url']
 
     print(station_url)
 
-    response = f"Radiosender {station_name} wird abgespielt!"
-    post_event("dialog_manager_output", response)
-
-    # play stream
-    post_event("dialog_manager_output", station_url)
+    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = station_url)
 
 def setup_music_event_handlers():
     """

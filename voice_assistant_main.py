@@ -31,7 +31,7 @@ class VoiceAssistant:
         """
         removes all generated files after the user request is done
         """
-        subprocess.run(["rm", config('DIALOG_MANAGER_OUTPUT_PATH'), config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')])
+        subprocess.run(["rm", "-f", config('DIALOG_MANAGER_OUTPUT_PATH'), config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')])
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()

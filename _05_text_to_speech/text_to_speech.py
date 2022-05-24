@@ -1,6 +1,7 @@
 from decouple import config
 from picotts import PicoTTS
 import vlc
+from voice_assistant_helper import read_from_file
 
 class TextToSpeech:
     
@@ -15,24 +16,24 @@ class TextToSpeech:
         reads output file from dialog manager and either generates wav file or sets up http stream,
         then plays audio using vlc
         """
-        file = open(self.dialog_manager_output_path)
-        for line in file:
-            line = line.rstrip("\n")
-            # set uri depending on line
-            if "http" in line:
-                self.vlc_audio_player.stop_audio_player()
-                self.vlc_audio_player.set_uri(line)
-            else:
-                self.vlc_audio_player.stop_audio_player()
-                self.vlc_audio_player.set_uri(self.wav_output_path)
+        dialog_manager_output = read_from_file(self.dialog_manager_output_path)
+        print(dialog_manager_output)
 
-                # generate wav file
-                audio = self.picotts.engine.synth_wav(line)
-                with open(self.wav_output_path, mode = 'bw') as wav:
-                    wav.write(audio)
+        # set uri depending on line
+        if "http" in dialog_manager_output:
+            self.vlc_audio_player.stop_audio_player()
+            self.vlc_audio_player.set_uri(dialog_manager_output)
+        else:
+            self.vlc_audio_player.stop_audio_player()
+            self.vlc_audio_player.set_uri(self.wav_output_path)
 
-            # starts the audio player
-            self.vlc_audio_player.start_audio_player()
+            # generate wav file
+            audio = self.picotts.engine.synth_wav(dialog_manager_output)
+            with open(self.wav_output_path, mode = 'bw') as wav:
+                wav.write(audio)
+
+        # starts the audio player
+        self.vlc_audio_player.start_audio_player()
 
 class Pico:
 

@@ -1,12 +1,13 @@
-from _04_dialog_manager.event import subscribe, post_event
-from voice_assistant_helper import read_json_file
+from _04_dialog_manager.event import subscribe
+from voice_assistant_helper import read_json_file, write_to_file
 from datetime import date, timedelta
+from decouple import config
 
 JSON_FILE_PATH = "_04_dialog_manager/mensa_parser/menue.json"
 
 def handle_menue_search_event(slots):
     """
-    retrieves menue data from json file then generates text and posts dialog_manager_output event
+    retrieves menue data from json file then generates text and writes output to file
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
     """
     # get date of requested day
@@ -17,7 +18,7 @@ def handle_menue_search_event(slots):
     if time == "samstag" or time == "sonntag" or index == 5 or index == 6:
         time = "samstag" if index == 5 else "sonntag"
         response = f"Am {time} hat die Mensa geschlossen"
-        post_event("dialog_manager_output", response)
+        write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
         return
 
     # retrieve json object for calculated date
@@ -49,7 +50,7 @@ def handle_menue_search_event(slots):
         response = "".join(response)
 
     response = f"Am {date_} gibt es {response}"
-    post_event("dialog_manager_output", response)
+    write_to_file(config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
 def get_date_of_day_by_name(day_name):
     """
