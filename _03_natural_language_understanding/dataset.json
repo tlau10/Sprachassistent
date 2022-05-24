@@ -190,12 +190,24 @@
         {
           "data": [
             {
-              "text": "Wer ist "
+              "text": "Was bedeutet "
             },
             {
               "entity": "search_term",
               "slot_name": "term",
               "text": "hund"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Wer ist "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "schuh"
             }
           ]
         }
