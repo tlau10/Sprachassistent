@@ -143,6 +143,26 @@
         {
           "synonyms": [],
           "value": "bach"
+        },
+        {
+          "synonyms": [],
+          "value": "mond"
+        },
+        {
+          "synonyms": [],
+          "value": "wind"
+        },
+        {
+          "synonyms": [],
+          "value": "kirche"
+        },
+        {
+          "synonyms": [],
+          "value": "fleisch"
+        },
+        {
+          "synonyms": [],
+          "value": "bruttoinlandsprodukt"
         }
       ],
       "matching_strictness": 1.0,
@@ -178,7 +198,7 @@
         {
           "data": [
             {
-              "text": "Was ist ein "
+              "text": "Was ist "
             },
             {
               "entity": "search_term",
@@ -190,7 +210,7 @@
         {
           "data": [
             {
-              "text": "Was bedeutet "
+              "text": "Was ist ein "
             },
             {
               "entity": "search_term",
@@ -202,12 +222,60 @@
         {
           "data": [
             {
-              "text": "Wer ist "
+              "text": "Was ist der "
             },
             {
               "entity": "search_term",
               "slot_name": "term",
               "text": "schuh"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was ist das "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "albert einstein"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was ist die "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "angela merkel"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was bedeutet "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "katze"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Wer ist "
+            },
+            {
+              "entity": "search_term",
+              "slot_name": "term",
+              "text": "Beethoven"
             }
           ]
         }
