@@ -6,7 +6,11 @@ slots:
   - name: term
     entity: search_term
 utterances:
+  - Was ist [term]
   - Was ist ein [term]
+  - Was ist der [term]
+  - Was ist das [term]
+  - Was ist die [term]
   - Was bedeutet [term]
   - Wer ist [term]
 
@@ -24,3 +28,8 @@ values:
   - katze
   - Beethoven
   - bach
+  - mond
+  - wind
+  - kirche
+  - fleisch
+  - bruttoinlandsprodukt
