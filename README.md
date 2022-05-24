@@ -88,9 +88,9 @@ $ ZZ
 $ cd ..
 ``` 
 
-### Run setup.py to setup cronjob for mensa skill
+### Run setup_cronjob.py to setup cronjob for mensa skill
 ``` 
-$ python setup.py
+$ python setup_cronjob.py
 ``` 
 
 ### Start the voice assistant

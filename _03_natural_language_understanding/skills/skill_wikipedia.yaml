@@ -7,6 +7,7 @@ slots:
     entity: search_term
 utterances:
   - Was ist ein [term]
+  - Was bedeutet [term]
   - Wer ist [term]
 
 # search term entity
@@ -15,5 +16,11 @@ type: entity
 name: search_term
 automatically_extensible: yes
 values:
+  - sonne
   - hund
-  - john cleese
+  - schuh
+  - albert einstein
+  - angela merkel
+  - katze
+  - Beethoven
+  - bach
