@@ -1,39 +1,21 @@
 {
-  "intents": 
-  [
-    {
-      "name": "search_menue",
-      "slot": 
-      [
-        {
-          "name": "time",
-          "values": []
-        },
-        {
-          "name": "menue",
-          "values": []
-        } 
-      ]
+  "search_menue": {
+    "time": {
+      "values": {
+      }
     },
-    {
-      "name": "search_definition",
-      "slot": 
-      [
-        {
-          "name": "term",
-          "values": []
-        } 
-      ]
-    },
-    {
-      "name": "play_radio_station",
-      "slot": 
-      [
-        {
-          "name": "radio_station",
-          "values": []
-        } 
-      ]
+    "menue": {
+      "values": []
     }
-  ]
+  },
+  "search_definition": {
+    "term": {
+      "values": []
+    }
+  },
+  "play_radio_station": {
+    "radio_station": {
+      "values": []
+    }
+  }
 }
