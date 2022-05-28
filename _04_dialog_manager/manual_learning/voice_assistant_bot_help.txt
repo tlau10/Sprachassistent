@@ -1,3 +1,4 @@
 You can control me by sending these commands:
 
-/register - register urself to the voice assistant bot
+/subscribe - subscribe yourself to the voice assistant bot
+/unsubscribe - unsubscribe yourself from the voice assistant bot

@@ -17,10 +17,10 @@ def help(message):
     bot.send_message(chat_id, response)
     
 
-@bot.message_handler(commands = ['register'])
-def register(message):
+@bot.message_handler(commands = ['subscribe'])
+def subscribe(message):
     """
-    stores users chat id in list
+    subscribes user by adding chat id to list
     @params message: message sent
     """
     chat_id = message.chat.id
@@ -28,9 +28,23 @@ def register(message):
     
     if chat_id not in registered_user_id:
         registered_user_id.append(chat_id)
-        bot.send_message(chat_id, f"User {user_name} succesfully registered!")
+        bot.send_message(chat_id, f"User {user_name} succesfully subscribed!")
     else:
-        bot.send_message(chat_id, f"User {user_name} is already registered!")
+        bot.send_message(chat_id, f"User {user_name} is already subscribed!")
 
+@bot.message_handler(commands = ['unsubscribe'])
+def unsubscribe(message):
+    """
+    unsubscribes user by removing chat id from list
+    @params message: message sent
+    """
+    chat_id = message.chat.id
+    user_name = message.from_user.first_name
+
+    if chat_id in registered_user_id:
+        registered_user_id.remove(chat_id)
+        bot.send_message(chat_id, f"User {user_name} succesfully unsubscribed!")
+    else:
+        bot.send_message(chat_id, f"User {user_name} is not subscribed!")
 
 bot.polling()
