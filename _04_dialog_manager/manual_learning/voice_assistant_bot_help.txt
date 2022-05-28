@@ -2,3 +2,4 @@ You can control me by sending these commands:
 
 /subscribe - subscribe yourself to the voice assistant bot
 /unsubscribe - unsubscribe yourself from the voice assistant bot
+/improve - improve a message sent by the voice assistant bot

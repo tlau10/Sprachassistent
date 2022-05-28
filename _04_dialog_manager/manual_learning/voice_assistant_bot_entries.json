@@ -1,0 +1,39 @@
+{
+  "intents": 
+  [
+    {
+      "name": "search_menue",
+      "slot": 
+      [
+        {
+          "name": "time",
+          "values": []
+        },
+        {
+          "name": "menue",
+          "values": []
+        } 
+      ]
+    },
+    {
+      "name": "search_definition",
+      "slot": 
+      [
+        {
+          "name": "term",
+          "values": []
+        } 
+      ]
+    },
+    {
+      "name": "play_radio_station",
+      "slot": 
+      [
+        {
+          "name": "radio_station",
+          "values": []
+        } 
+      ]
+    }
+  ]
+}
