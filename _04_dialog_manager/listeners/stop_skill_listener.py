@@ -8,7 +8,10 @@ def handle_stop_event(slots = None):
     @param slots: empty placeholder
     """
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = "")
+
+    ###Learning###
     post_event("start_learning", None)
+    ###Learning###
 
 def setup_stop_event_handlers():
     """

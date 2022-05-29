@@ -1,4 +1,4 @@
-from _04_dialog_manager.event import subscribe
+from _04_dialog_manager.event import subscribe, post_event
 import wikipediaapi
 import re
 from decouple import config
@@ -35,6 +35,10 @@ def handle_wikipedia_search_event(slots):
 
     first_sentence = page_summary.split('.')[0]
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
+
+    ###Learning###
+    post_event("start_learning", None)
+    ###Learning###
 
 def setup_wikipedia_event_handlers():
     """

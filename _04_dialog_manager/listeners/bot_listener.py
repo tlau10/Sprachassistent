@@ -5,9 +5,16 @@ import re
 
 DIALOG_MANAGER_DATA = config('DIALOG_MANAGER_DATA_PATH')
 REQUEST_OUTPUT_FILE = config('BOT_REQUESTS')
+TIME_LIMIT = 5.0
 
 def handle_start_learning_event(slots = None):
     """
+    uses dialog_manager_data.txt to decide if request needs to be made then stores it in file
+    covers the following scenarios
+    scenario 1: last line is stop intent and <= 5 sec. to second last
+    scenario 2: last two lines are from same intent and <= 5 sec. to second last
+    scenario 3: nothing was found for slot value -> gets called by lookup_entry event, only look at latest line
+    in all scenarios: write request for each slot to requests.txt
     @param slots: empty placeholder
     """
     # get last two lines from dm_data.txt
@@ -15,20 +22,25 @@ def handle_start_learning_event(slots = None):
 
     # delete file
 
-    parts_last_line = lines[-1].split(" ")
-    parts_second_last_line = lines[-2].split(" ")
-    # scenario 1: last line is stop intent and <= 5 sec. to second last then write request to requests.txt
-    if 'stop' in parts_last_line:
-        diff = float(parts_last_line[-1]) - float(parts_second_last_line[-1])
-        if diff <= 5.0:
-            slots = re.search("{.*}", lines[-2]).group(0)
-            result = convert_string_to_dict(string = slots)
-            print(result)
-            requests = generate_request_string((parts_second_last_line[0], result))
-            for request in requests:
-                append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
-    # scenario 2: last two lines are from same intent and <= 5 sec. to second last then write request for each slot to requests.txt
-    # scenario 3: invalid slot value -> gets called by lookup_entry(): only look at latest line and write request for ech slot to requests.txt
+    last_line_parts = lines[-1].split(" ")
+    second_last_line_parts = lines[-2].split(" ")
+
+    stop_event = False
+    # check if last line ist stop event
+    if 'stop' in last_line_parts:
+        stop_event = True
+
+    time_diff = float(last_line_parts[-1]) - float(second_last_line_parts[-1])
+    if time_diff <= TIME_LIMIT:
+        # filter out slots and convert it to a dict
+        slots = re.search("{.*}", lines[-2] if stop_event else lines[-1]).group(0)
+        result = convert_string_to_dict(string = slots)
+        print(result)
+
+        # generate request string and append it to file
+        requests = generate_request_string((second_last_line_parts[0], result))
+        for request in requests:
+            append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
 
 def generate_request_string(data):
     """

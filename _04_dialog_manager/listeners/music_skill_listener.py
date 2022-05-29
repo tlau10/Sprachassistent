@@ -1,4 +1,4 @@
-from _04_dialog_manager.event import subscribe
+from _04_dialog_manager.event import post_event, subscribe
 from pyradios import RadioBrowser
 import random
 from voice_assistant_helper import write_to_file
@@ -32,6 +32,10 @@ def handle_play_radio_station_event(slots):
     print(station_url)
 
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = station_url)
+    
+    ###Learning###
+    post_event("start_learning", None)
+    ###Learning###
 
 def setup_music_event_handlers():
     """

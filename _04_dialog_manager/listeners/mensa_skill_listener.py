@@ -1,4 +1,4 @@
-from _04_dialog_manager.event import subscribe
+from _04_dialog_manager.event import subscribe, post_event
 from voice_assistant_helper import read_json_file, write_to_file
 from datetime import date, timedelta
 from decouple import config
@@ -51,6 +51,10 @@ def handle_menue_search_event(slots):
 
     response = f"Am {date_} gibt es {response}"
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
+
+    ###Learning###
+    post_event("start_learning", None)
+    ###Learning###
 
 def get_date_of_day_by_name(day_name):
     """
