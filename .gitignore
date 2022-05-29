@@ -8,9 +8,9 @@ _04_dialog_manager/mensa_parser/seezeit_page.html
 _04_dialog_manager/mensa_parser/menue.json
 _04_dialog_manager/dialog_manager_output.txt
 _04_dialog_manager/dialog_manager_data.txt
-_04_dialog_manager/manual_learning/voice_assistant_bot_requests.txt
 _04_dialog_manager/manual_learning/telegram_bot.key
-_04_dialog_manager/manual_learning/voice_assistant_bot_entries.json
+_04_dialog_manager/manual_learning/entries.json
+_04_dialog_manager/manual_learning/requests.txt
 _05_text_to_speech/tts_output.wav
 
 # Byte-compiled / optimized / DLL files

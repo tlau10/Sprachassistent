@@ -68,6 +68,3 @@ def setup_bot_event_handlers():
     """
     subscribe("start_learning", handle_start_learning_event)
     subscribe("lookup_entry", handle_lookup_entry_event)
-
-if __name__ == "__main__":
-    handle_start_learning_event()
