@@ -31,7 +31,7 @@ class DialogManager:
 
         ###Learning###
         request = f"{intent_name} {str(slot_values)} {time.time()}\n"
-        append_to_file(file_path = config('BOT_REQUESTS'), text = request)
+        append_to_file(file_path = config('DIALOG_MANAGER_DATA_PATH'), text = request)
         ###Learning###
 
         post_event(intent_name, slot_values)
