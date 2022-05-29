@@ -1,6 +1,5 @@
 import pyaudio
 import struct
-from decouple import config
 import wave
 import json
 
@@ -77,8 +76,16 @@ def write_to_file(file_path, text):
     """
     with open(file_path, "w") as file:
         file.write(text)
-        file.close()
 
+def append_to_file(file_path, text):
+    """
+    appends text to given file
+    @param file_path: relative path of file
+    @param text: string to append to file
+    """
+    with open(file_path, "a") as file:
+        file.write(text)
+        
 def read_json_file(file_path):
     """
     reads from given json file

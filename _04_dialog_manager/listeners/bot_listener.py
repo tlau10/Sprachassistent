@@ -1,6 +1,6 @@
 from _04_dialog_manager.event import subscribe
 
-def handle_learning_event(slots):
+def handle_start_learning_event(slots):
     """
     @param slots: empty placeholder
     """
@@ -10,4 +10,4 @@ def setup_bot_event_handlers():
     """
     subcribes all events 
     """
-    subscribe("learn", handle_learning_event)
+    subscribe("start_learning", handle_start_learning_event)
