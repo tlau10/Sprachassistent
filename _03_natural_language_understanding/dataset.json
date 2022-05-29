@@ -323,7 +323,7 @@
         {
           "data": [
             {
-              "text": "Was gibt es "
+              "text": "Was gibt es am "
             },
             {
               "entity": "point_of_time",
@@ -331,7 +331,14 @@
               "text": "morgen"
             },
             {
-              "text": " "
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es bei "
             },
             {
               "entity": "menue_name",
@@ -346,7 +353,7 @@
         {
           "data": [
             {
-              "text": "Was gibt es "
+              "text": "Was gibt es als "
             },
             {
               "entity": "menue_name",
@@ -354,12 +361,142 @@
               "text": "seezeit"
             },
             {
-              "text": " "
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es "
             },
             {
               "entity": "point_of_time",
               "slot_name": "time",
               "text": "montag"
+            },
+            {
+              "text": " "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "hin&weg"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es am "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "dienstag"
+            },
+            {
+              "text": " als "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "hin und weg"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es am "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "mittwoch"
+            },
+            {
+              "text": " bei "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "kombinierBar"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "kombinierbar"
+            },
+            {
+              "text": " "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "donnerstag"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es als "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "kombinier bar"
+            },
+            {
+              "text": " am "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "freitag"
+            },
+            {
+              "text": " zu essen"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "text": "Was gibt es bei "
+            },
+            {
+              "entity": "menue_name",
+              "slot_name": "menue",
+              "text": "pastastand"
+            },
+            {
+              "text": " am "
+            },
+            {
+              "entity": "point_of_time",
+              "slot_name": "time",
+              "text": "samstag"
             },
             {
               "text": " zu essen"

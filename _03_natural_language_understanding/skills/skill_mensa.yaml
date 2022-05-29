@@ -11,8 +11,15 @@ utterances:
   - Was gibt es zu essen
   - Was gibt es [time] zu essen
   - Was gibt es [menue] zu essen
+  - Was gibt es am [time] zu essen
+  - Was gibt es bei [menue] zu essen
+  - Was gibt es als [menue] zu essen
   - Was gibt es [time] [menue] zu essen
+  - Was gibt es am [time] als [menue] zu essen
+  - Was gibt es am [time] bei [menue] zu essen
   - Was gibt es [menue] [time] zu essen
+  - Was gibt es als [menue] am [time] zu essen
+  - Was gibt es bei [menue] am [time] zu essen
 
 # point of time entity
 ---
