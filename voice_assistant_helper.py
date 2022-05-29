@@ -2,6 +2,7 @@ import pyaudio
 import struct
 import wave
 import json
+import ast
 
 def get_next_audio_frame(sample_rate, frames):
     """
@@ -104,3 +105,11 @@ def write_json_file(file_path, json_object):
     json_object = json.dumps(json_object, indent = 2)
     print(json_object)
     write_to_file(file_path = file_path, text = json_object)
+
+def convert_string_to_dict(string):
+    """
+    evaluates string then converts it to dict otherwise raises TypeError
+    @param string: string to convert to dict
+    @return: dict object
+    """
+    return ast.literal_eval(string)

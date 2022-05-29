@@ -1,4 +1,4 @@
-from _04_dialog_manager.event import subscribe
+from _04_dialog_manager.event import post_event, subscribe
 from decouple import config
 from voice_assistant_helper import write_to_file
 
@@ -8,6 +8,7 @@ def handle_stop_event(slots = None):
     @param slots: empty placeholder
     """
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = "")
+    post_event("start_learning")
 
 def setup_stop_event_handlers():
     """
