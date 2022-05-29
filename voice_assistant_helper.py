@@ -60,6 +60,15 @@ def read_from_file(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
+def read_from_file_by_line(file_path):
+    """
+    reads text from given file line by line
+    @param file path: relative path of file
+    @return: list of strings
+    """
+    with open(file_path, "r") as file:
+        return file.readlines()
+
 def write_to_file(file_path, text):
     """
     writes text to given file
@@ -74,7 +83,7 @@ def read_json_file(file_path):
     """
     reads from given json file
     @param file path: relative path of file
-    @return: json object
+    @return: dict object
     """
     with open(file_path, "r") as file:
         return json.load(file)

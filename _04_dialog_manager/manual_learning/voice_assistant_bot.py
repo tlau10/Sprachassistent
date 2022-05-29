@@ -1,89 +1,73 @@
 import telebot
-from voice_assistant_helper import read_from_file, read_json_file, write_json_file
+from voice_assistant_helper import read_from_file, read_from_file_by_line, write_to_file
+from voice_assistant_bot_helper import store_entry
 from decouple import config
+import re
 
+REQUEST_INPUT_FILE = config('BOT_REQUESTS')
 API_KEY = read_from_file(file_path = config('TELEGRAM_BOT_KEY'))
-JSON_FILE_OUTPUT_PATH = config('BOT_ENTRIES')
-
 bot = telebot.TeleBot(API_KEY)
-registered_user_id = list()
-commands = ['help', 'subscribe', 'unsubscribe', 'improve']
 
-@bot.message_handler(commands = [commands[0]])
+@bot.message_handler(commands = ['help'])
 def help(message):
     """
     sends overview of all available commands
+    @param message: message sent by user
     """
     response = read_from_file(config('BOT_HELP'))
     chat_id = message.chat.id
     bot.send_message(chat_id, response)
-    
 
-@bot.message_handler(commands = [commands[1]])
-def subscribe(message):
+@bot.message_handler(commands = ['request'])
+def get_request(message):
     """
-    subscribes user by adding chat id to list
-    @params message: message sent
-    """
-    chat_id = message.chat.id
-    user_name = message.from_user.first_name
-    
-    if chat_id not in registered_user_id:
-        registered_user_id.append(chat_id)
-        bot.send_message(chat_id, f"User {user_name} succesfully subscribed!")
-    else:
-        bot.send_message(chat_id, f"User {user_name} is already subscribed!")
-
-@bot.message_handler(commands = [commands[2]])
-def unsubscribe(message):
-    """
-    unsubscribes user by removing chat id from list
-    @params message: message sent
+    sends first line from requests file to user then removes line
+    @param message: message sent by user
     """
     chat_id = message.chat.id
-    user_name = message.from_user.first_name
 
-    if chat_id in registered_user_id:
-        registered_user_id.remove(chat_id)
-        bot.send_message(chat_id, f"User {user_name} succesfully unsubscribed!")
-    else:
-        bot.send_message(chat_id, f"User {user_name} is not subscribed!")
+    # get all lines from file
+    requests = read_from_file_by_line(file_path = REQUEST_INPUT_FILE)
 
-@bot.message_handler(commands = [commands[3]])
+    # check if file is empty
+    if len(requests) == 0:
+        bot.send_message(chat_id, "No request available!")
+        return
+
+    # get first line from file and send message
+    request = requests[0].split(" ") 
+    bot.send_message(chat_id, f"Intent: {request[0]} Slot: {request[1]} Value: {request[2]}")
+
+    # remove first line from file
+    del requests[0]
+    write_to_file(file_path = REQUEST_INPUT_FILE, text = "".join(requests))
+    
+@bot.message_handler(commands = ['improve'])
 def improve(message):
+    """
+    used to improve line from requests file, needs to be called on a reply to a message sent by the bot
+    @param message: message sent by user
+    """
     chat_id = message.chat.id
 
-    # check if its a reply to a message sent by the bot
-    if message.reply_to_message is not None and message.reply_to_message.from_user.is_bot is True:
-        replied_message = message.reply_to_message.text
+    # format of replied bot message
+    request_regex = "Intent: .* Slot: .* Value: .*"
 
-        bot.send_message(chat_id, f"Succesfully improved {replied_message}!")
+    # check if its a reply to a message sent by the bot and if the message sent by the bot has the correct format
+    if message.reply_to_message is not None and \
+        message.reply_to_message.from_user.is_bot is True and \
+            re.match(request_regex, message.reply_to_message.text):
 
-        intent, slot, recognized_value = replied_message.split(": ")
+        # get replied message and message text
+        replied_message_text = message.reply_to_message.text
+        replied_message = replied_message_text.split(" ")
         improved_value = message.text.replace("/improve ", "")
 
-        store_entry((intent, slot, recognized_value, improved_value))
+        # save entry to json file
+        store_entry((replied_message[1], replied_message[3], replied_message[5], improved_value))
+
+        bot.send_message(chat_id, f"Succesfully improved {replied_message_text} with value: {improved_value}!")
     else:
-        bot.send_message(chat_id, f"Use by replying to a message sent by the voice assistant bot then type /{commands[3]} followed by your improvement")
-
-def store_entry(entry):
-    """
-    writes new entry to json file
-    @param entry: entry to write to file as tuple(intent, slot, replied_message, improved_message)
-    """
-    intent, slot, recognized_value, improved_value = entry
-    print(f"intent: {intent}, slot: {slot}, recognized_value: {recognized_value}, improved_value: {improved_value}")
-
-    # read json
-    entries = read_json_file(file_path = JSON_FILE_OUTPUT_PATH)
-
-    # retrieve entry
-    entry = entries[intent][slot]
-
-    # append new key value pair
-    kv = {recognized_value : improved_value}
-    entry['values'] = kv
-
-    write_json_file(file_path = JSON_FILE_OUTPUT_PATH, json_object = entries)
+        bot.send_message(chat_id, "Use by replying to a message sent by the voice assistant bot then type /improve followed by your improvement")
 
 bot.polling()

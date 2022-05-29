@@ -1,14 +1,16 @@
 # project files
-file.wav
 _01_wake_word_detection/picovoice.key
 _02_speech_to_text/stt_audio
 _02_speech_to_text/stt_output.txt
 pyvenv
 _03_natural_language_understanding/nlu_output.json
-_05_text_to_speech/tts_output.wav
 _04_dialog_manager/mensa_parser/seezeit_page.html
 _04_dialog_manager/mensa_parser/menue.json
 _04_dialog_manager/dialog_manager_output.txt
+_04_dialog_manager/manual_learning/voice_assistant_bot_requests.txt
+_04_dialog_manager/manual_learning/telegram_bot.key
+_04_dialog_manager/manual_learning/voice_assistant_bot_entries.json
+_05_text_to_speech/tts_output.wav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
