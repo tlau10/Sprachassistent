@@ -3,6 +3,7 @@ import wikipediaapi
 import re
 from decouple import config
 from voice_assistant_helper import write_to_file
+from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
 
 REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
 
@@ -26,9 +27,20 @@ def handle_wikipedia_search_event(slots):
 
     # no wikipedia page found
     if not wikipedia_page.exists():
-        response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
-        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
-        return
+        ###Learning###
+        new_search_term = lookup_entry()
+        print(f"new_search_term {new_search_term}")
+
+        # check if something in entries was found
+        if new_search_term:
+            wikipedia_page = wikipedia.page(title = new_search_term)
+
+        # nothing was found for search_term from entries or no entry was found
+        if wikipedia_page.exists() or not new_search_term:
+            response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
+            write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
+            return
+        ###LEARNING###
 
     page_summary = wikipedia_page.summary
     page_summary = re.sub(REGEX_FIND_PARENTHESIS_PAIRS, "", page_summary)
@@ -37,7 +49,7 @@ def handle_wikipedia_search_event(slots):
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
 
     ###Learning###
-    post_event("start_learning", None)
+    post_event("start_learning", 2)
     ###Learning###
 
 def setup_wikipedia_event_handlers():

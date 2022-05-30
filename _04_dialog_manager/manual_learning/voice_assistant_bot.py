@@ -35,8 +35,8 @@ def get_request(message):
         return
 
     # get first line from file and send message
-    request = requests[0].split(" ") 
-    bot.send_message(chat_id, f"Intent: {request[0]} Slot: {request[1]} Value: {request[2]}")
+    intent, slot, value = requests[0].split(" ", 2) 
+    bot.send_message(chat_id, f"Intent: {intent} Slot: {slot} Value: {value}")
 
     # remove first line from file
     del requests[0]
@@ -60,11 +60,11 @@ def improve(message):
 
         # get replied message and message text
         replied_message_text = message.reply_to_message.text
-        replied_message = replied_message_text.split(" ")
+        replied_message_text = replied_message_text.replace(":", "").split(" ", 5)
         improved_value = message.text.replace("/improve ", "")
 
         # save entry to json file
-        store_entry((replied_message[1], replied_message[3], replied_message[5], improved_value))
+        store_entry((replied_message_text[1], replied_message_text[3], replied_message_text[5], improved_value))
 
         bot.send_message(chat_id, f"Succesfully improved {replied_message_text} with value: {improved_value}!")
     else:

@@ -10,7 +10,7 @@ def handle_stop_event(slots = None):
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = "")
 
     ###Learning###
-    post_event("start_learning", None)
+    post_event("start_learning", 1)
     ###Learning###
 
 def setup_stop_event_handlers():

@@ -53,7 +53,7 @@ def handle_menue_search_event(slots):
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
     ###Learning###
-    post_event("start_learning", None)
+    post_event("start_learning", 2)
     ###Learning###
 
 def get_date_of_day_by_name(day_name):
