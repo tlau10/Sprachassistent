@@ -27,6 +27,13 @@ class VoiceAssistant:
             self.text_to_speech.start()
             self.data_cleanup()
 
+    def start_bot(self):
+        """
+        starts voice assistant bot in a new Process
+        """
+        cmd = f"python {config('BOT')}"
+        subprocess.Popen(cmd, shell = True)
+
     def data_cleanup(self):
         """
         removes all generated files after the user request is done
@@ -35,4 +42,5 @@ class VoiceAssistant:
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()
+    voice_assistant.start_bot()
     voice_assistant.run()
