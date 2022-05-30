@@ -34,10 +34,10 @@ def store_entry(entry):
 
     write_json_file(file_path = JSON_FILE_OUTPUT_PATH, json_object = entries)
 
-def lookup_entry(slots = None):
+def lookup_entry():
     """
-    returns found entry, if nothing is found starts start_learning event
-    @param slots: empty placeholder
+    looks for slot value in entries
+    @return: returns found entry otherwise None
     """
     # get last line
     lines = read_from_file_by_line(file_path = DIALOG_MANAGER_DATA)
@@ -67,12 +67,12 @@ def lookup_entry(slots = None):
 
 def generate_request_string(data):
     """
+    generates request string
     @param data: tuple (intent, slots as dict)
     @return: request string for each slot
     """
     intent, slots = data
     requests = list()
-    print(slots)
     for key, value in slots.items():
         requests.append(f"{intent} {key} {value}")
 
@@ -81,7 +81,7 @@ def generate_request_string(data):
 def extract_slots_and_convert_to_dict(string):
     """
     extracts slot values from given string then call convert_string_to_dict()
-    @param string: string ro extract slots from
+    @param string: string to extract slots from
     @return: dict of slots
     """
     slots = re.search("{.*}", string).group(0)

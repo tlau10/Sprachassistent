@@ -19,7 +19,7 @@ def handle_start_learning_event(scenario = None):
     """
     lines = read_from_file_by_line(file_path = DIALOG_MANAGER_DATA)
 
-    # check if entires exist
+    # check if entries exist
     if len(lines) == 0:
         return
 
