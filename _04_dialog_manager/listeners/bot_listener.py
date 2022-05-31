@@ -44,7 +44,7 @@ def handle_start_learning_event(scenario = None):
             return
 
         # generate request string and append it to file
-        requests = generate_request_string((last_line_parts[0], slots))
+        requests = generate_request_string(data = (last_line_parts[0], slots))
         for request in requests:
             append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
         return
@@ -65,7 +65,7 @@ def handle_start_learning_event(scenario = None):
     # check time difference below set time limit
     if time_diff <= TIME_LIMIT:
         # generate request string and append it to file
-        requests = generate_request_string((second_last_line_parts[0], slots))
+        requests = generate_request_string(data = (second_last_line_parts[0], slots))
         for request in requests:
             append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
         
