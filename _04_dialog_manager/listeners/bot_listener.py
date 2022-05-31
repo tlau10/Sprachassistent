@@ -1,5 +1,5 @@
 from _04_dialog_manager.event import subscribe
-from voice_assistant_helper import append_to_file, read_from_file_by_line, write_to_file
+from voice_assistant_helper import append_to_file, read_from_file_by_line
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import extract_slots_and_convert_to_dict, generate_request_string
 from decouple import config
 
