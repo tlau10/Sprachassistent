@@ -1,7 +1,8 @@
 from _04_dialog_manager.event import post_event
 from _04_dialog_manager.observer import setup_event_handlers
-from voice_assistant_helper import read_json_file
+from voice_assistant_helper import read_json_file, append_to_file
 from decouple import config
+import time
 
 class DialogManager:
 
@@ -26,5 +27,11 @@ class DialogManager:
         # no intent matched
         if not intent_name:
             post_event("none", slot_values)
+            return
+
+        ###Learning###
+        request = f"{intent_name} {str(slot_values)} {time.time()}\n"
+        append_to_file(file_path = config('DIALOG_MANAGER_DATA_PATH'), text = request)
+        ###Learning###
 
         post_event(intent_name, slot_values)

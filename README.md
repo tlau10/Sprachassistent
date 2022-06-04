@@ -88,6 +88,15 @@ $ ZZ
 $ cd ..
 ``` 
 
+### Add telegram_bot.key file
+``` 
+$ cd _04_dialog_manager/manual_learning
+$ vi telegram_bot.key
+$ insert key
+$ ZZ
+$ cd ..
+``` 
+
 ### Run setup_cronjob.py to setup cronjob for mensa skill
 ``` 
 $ python setup_cronjob.py

@@ -1,0 +1,3 @@
+You can control me by sending these commands:
+
+/request - request a message from the voice assistant bot

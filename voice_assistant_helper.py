@@ -1,8 +1,8 @@
 import pyaudio
 import struct
-from decouple import config
 import wave
 import json
+import ast
 
 def get_next_audio_frame(sample_rate, frames):
     """
@@ -60,6 +60,15 @@ def read_from_file(file_path):
     with open(file_path, "r") as file:
         return file.read()
 
+def read_from_file_by_line(file_path):
+    """
+    reads text from given file line by line
+    @param file path: relative path of file
+    @return: list of strings
+    """
+    with open(file_path, "r") as file:
+        return file.readlines()
+
 def write_to_file(file_path, text):
     """
     writes text to given file
@@ -68,13 +77,21 @@ def write_to_file(file_path, text):
     """
     with open(file_path, "w") as file:
         file.write(text)
-        file.close()
 
+def append_to_file(file_path, text):
+    """
+    appends text to given file
+    @param file_path: relative path of file
+    @param text: string to append to file
+    """
+    with open(file_path, "a") as file:
+        file.write(text)
+        
 def read_json_file(file_path):
     """
     reads from given json file
     @param file path: relative path of file
-    @return: json object
+    @return: dict object
     """
     with open(file_path, "r") as file:
         return json.load(file)
@@ -88,3 +105,11 @@ def write_json_file(file_path, json_object):
     json_object = json.dumps(json_object, indent = 2)
     print(json_object)
     write_to_file(file_path = file_path, text = json_object)
+
+def convert_string_to_dict(string):
+    """
+    evaluates string then converts it to dict otherwise raises TypeError
+    @param string: string to convert to dict
+    @return: dict object
+    """
+    return ast.literal_eval(string)
