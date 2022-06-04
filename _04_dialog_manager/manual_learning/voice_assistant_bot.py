@@ -42,7 +42,7 @@ def get_request(message):
     del requests[0]
     write_to_file(file_path = REQUEST_INPUT_FILE, text = "".join(requests))
     
-@bot.message_handler(commands = ['improve'])
+@bot.message_handler(func=lambda message: True)
 def improve(message):
     """
     used to improve line from requests file, needs to be called on a reply to a message sent by the bot
@@ -61,13 +61,12 @@ def improve(message):
         # get replied message and message text
         replied_message_text = message.reply_to_message.text
         replied_message_text = replied_message_text.replace(":", "").split(" ", 5)
-        improved_value = message.text.replace("/improve ", "")
 
         # save entry to json file
-        store_entry((replied_message_text[1], replied_message_text[3], replied_message_text[5], improved_value))
+        store_entry((replied_message_text[1], replied_message_text[3], replied_message_text[5], replied_message_text))
 
-        bot.send_message(chat_id, f"Succesfully improved {replied_message_text} with value: {improved_value}!")
+        bot.send_message(chat_id, f"Succesfully improved {replied_message_text} with value: {replied_message_text}!")
     else:
-        bot.send_message(chat_id, "Use by replying to a message sent by the voice assistant bot then type /improve followed by your improvement")
+        bot.send_message(chat_id, "Use by replying to a request message sent by the voice assistant")
 
 bot.polling()
