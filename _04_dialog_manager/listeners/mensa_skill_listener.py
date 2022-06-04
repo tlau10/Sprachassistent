@@ -1,4 +1,4 @@
-from _04_dialog_manager.event import subscribe, post_event
+from _04_dialog_manager.event import subscribe
 from voice_assistant_helper import read_json_file, write_to_file
 from datetime import date, timedelta
 from decouple import config
@@ -45,16 +45,12 @@ def handle_menue_search_event(slots):
     chosen_menue = slots.get('menue')
     available_menues = ["Seezeit-Teller", "hin&weg", "KombinierBar", "Pastastand"]
     if chosen_menue is not None and chosen_menue in available_menues:
-        response = menue_descriptions[slots['menue']]
+        response = menue_descriptions.get(slots['menue'])
     else:
         response = "".join(response)
 
-    response = f"Am {date_} gibt es {response}"
+    response = f"Am {date_} gibt es {response}" if response is not None else f"Am {date_} gibt es leider kein Menü"
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
-
-    ###Learning###
-    post_event("start_learning", 2)
-    ###Learning###
 
 def get_date_of_day_by_name(day_name):
     """
