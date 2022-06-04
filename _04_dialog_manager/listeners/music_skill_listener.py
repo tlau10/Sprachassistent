@@ -31,7 +31,7 @@ def handle_play_radio_station_event(slots):
 
             # check if something in entries was found
             if new_station_name:
-                radio_station = radio_browser.search(name = new_station_name, name_exact = False)
+                radio_station = radio_browser.search(name = new_station_name, name_exact = True)
             
             # nothing was found for radio_station from entries or no entry was found
             if not radio_station or not new_station_name:
