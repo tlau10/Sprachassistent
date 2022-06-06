@@ -49,7 +49,7 @@ def handle_menue_search_event(slots):
     else:
         response = "".join(response)
 
-    response = f"Am {date_} gibt es {response}" if response is not None else f"Am {date_} gibt es leider kein Menü"
+    response = f"Am {date_} gibt es {response}" if response is not None else f"Am {date_} gibt es leider kein {chosen_menue} Menü"
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
 def get_date_of_day_by_name(day_name):
