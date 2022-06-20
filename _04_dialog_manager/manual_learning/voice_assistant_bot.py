@@ -62,10 +62,13 @@ def improve(message):
         replied_message_text = message.reply_to_message.text
         replied_message_text = replied_message_text.replace(":", "").split(" ", 5)
 
-        # save entry to json file
-        store_entry((replied_message_text[1], replied_message_text[3], replied_message_text[5], replied_message_text))
+        old_value = replied_message_text[-1]
+        improved_value = message.text
 
-        bot.send_message(chat_id, f"Succesfully improved {replied_message_text} with value: {replied_message_text}!")
+        # save entry to json file
+        store_entry((replied_message_text[1], replied_message_text[3], old_value, improved_value))
+
+        bot.send_message(chat_id, f"Succesfully improved \"{old_value}\" with value \"{improved_value}\"!")
     else:
         bot.send_message(chat_id, "Use by replying to a request message sent by the voice assistant")
 
