@@ -2,7 +2,7 @@
 _01_wake_word_detection/picovoice.key
 _02_speech_to_text/stt_audio
 _02_speech_to_text/stt_output.txt
-pyvenv
+pyvenv3.7
 _03_natural_language_understanding/nlu_output.json
 _04_dialog_manager/mensa_parser/seezeit_page.html
 _04_dialog_manager/mensa_parser/menue.json
