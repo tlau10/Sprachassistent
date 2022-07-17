@@ -13,7 +13,7 @@ from halo import Halo
 from scipy import signal
 from decouple import config
 from voice_assistant_helper import write_to_file
-import os
+import platform
 
 logging.basicConfig(level=20)
 
@@ -21,7 +21,7 @@ class SpeechToText:
 
     def __init__(self):
 
-        if os.uname().machine == "x86_64":
+        if platform.system() == "Linux" or platform.system() == "Windows":
             model_path = config('STT_MODEL_PATH_LINUX')
         else:
             model_path = config('STT_MODEL_PATH_PI')
@@ -39,7 +39,7 @@ class SpeechToText:
         start streaming audio using vad, generates text file with recognized phrase,
         saves audio to wav file
         """
-        if os.uname().machine == "x86_64":
+        if platform.system() == "Linux" or platfrom.system() == "Windows":
             rate = 16000
         else:
             rate = 48000

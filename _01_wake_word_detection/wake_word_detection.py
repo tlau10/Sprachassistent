@@ -2,15 +2,17 @@ import pvporcupine
 from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_from_file
 from datetime import datetime
 from decouple import config
-import os
+import platform
 
 class WakeWordDetection:
 
     def __init__(self):
         access_key = read_from_file(file_path = config('PICOVOICE_ACCESS_KEY_PATH'))
 
-        if os.uname().machine == "x86_64":
+        if platform.system() == "Linux":
             keyword_path = config('WWD_KEYWORD_PATH_LINUX')
+        elif platform.system() == "Windows":
+            keyword_path = config('WWD_KEYWORD_PATH_WIN')
         else:
             keyword_path = config('WWD_KEYWORD_PATH_PI')
 
@@ -28,7 +30,7 @@ class WakeWordDetection:
         """
         print("wake word detection listening on audio input...")
 
-        if os.uname().machine == "x86_64":
+        if platform.system() == "Linux" or platform.system() == "Windows":
             rate = self.porcupine.engine.sample_rate
         else:
             rate = 48000
