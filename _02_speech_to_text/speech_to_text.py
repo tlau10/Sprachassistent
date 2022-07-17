@@ -22,7 +22,7 @@ class SpeechToText:
     def __init__(self):
 
         if platform.system() == "Linux" or platform.system() == "Windows":
-            model_path = config('STT_MODEL_PATH_LINUX')
+            model_path = config('STT_MODEL_PATH')
         else:
             model_path = config('STT_MODEL_PATH_PI')
 
