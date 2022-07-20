@@ -69,7 +69,7 @@ def handle_start_learning_event(scenario = None):
         requests = generate_request_string(data = (second_last_line_parts[0], slots))
         for request in requests:
             append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
- 
+
 def setup_bot_event_handlers():
     """
     subcribes all events

@@ -61,7 +61,7 @@ def get_date_of_day_by_name(day_name):
     @param day_name: name of day
     @return: tuple (date as dd.mm, index of date) of given day_name
     """
-    days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 
+    days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4,
         'samstag' : 5, 'sonntag' : 6}
     date_format = "%d.%m"
 
