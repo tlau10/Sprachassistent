@@ -29,7 +29,7 @@ def execute_js():
     json_data = dict()
     for obj in json_object:
         json_data[obj['Date']] = obj
- 
+
     write_json_file(file_path = JSON_FILE_PATH, json_object = json_data)
 
 

@@ -1,10 +1,10 @@
+import subprocess
+from decouple import config
 from _01_wake_word_detection.wake_word_detection import WakeWordDetection
 from _02_speech_to_text.speech_to_text import SpeechToText
 from _03_natural_language_understanding.natural_language_understanding import NLU
 from _04_dialog_manager.dialog_manager import DialogManager
 from _05_text_to_speech.text_to_speech import TextToSpeech
-import subprocess
-from decouple import config
 
 class VoiceAssistant:
 
@@ -32,13 +32,16 @@ class VoiceAssistant:
         starts voice assistant bot in a new Process
         """
         cmd = f"python {config('BOT')}"
-        subprocess.Popen(cmd, shell = True)
+        with subprocess.Popen(cmd, shell = True):
+            pass
 
     def data_cleanup(self):
         """
         removes all generated files after the user request is done
         """
-        subprocess.run(["rm", "-f", config('DIALOG_MANAGER_OUTPUT_PATH'), config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')])
+        subprocess.run(["rm", "-f", config('DIALOG_MANAGER_OUTPUT_PATH'), \
+            config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')], \
+                check = True)
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()

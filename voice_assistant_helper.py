@@ -1,8 +1,8 @@
-import pyaudio
 import struct
 import wave
 import json
 import ast
+import pyaudio
 
 def get_next_audio_frame(sample_rate, frames):
     """
@@ -57,7 +57,7 @@ def read_from_file(file_path):
     @param file path: relative path of file
     @return: text
     """
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding = "utf-8") as file:
         return file.read()
 
 def read_from_file_by_line(file_path):
@@ -66,7 +66,7 @@ def read_from_file_by_line(file_path):
     @param file path: relative path of file
     @return: list of strings
     """
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding = "utf-8") as file:
         return file.readlines()
 
 def write_to_file(file_path, text):
@@ -75,7 +75,7 @@ def write_to_file(file_path, text):
     @param file_path: relative path of file
     @param text: string to write into file
     """
-    with open(file_path, "w") as file:
+    with open(file_path, "w", encoding = "utf-8") as file:
         file.write(text)
 
 def append_to_file(file_path, text):
@@ -84,16 +84,16 @@ def append_to_file(file_path, text):
     @param file_path: relative path of file
     @param text: string to append to file
     """
-    with open(file_path, "a") as file:
+    with open(file_path, "a", encoding = "utf-8") as file:
         file.write(text)
-        
+
 def read_json_file(file_path):
     """
     reads from given json file
     @param file path: relative path of file
     @return: dict object
     """
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding = "utf-8") as file:
         return json.load(file)
 
 def write_json_file(file_path, json_object):
