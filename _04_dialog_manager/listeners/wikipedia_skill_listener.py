@@ -1,11 +1,11 @@
-from _04_dialog_manager.event import subscribe, post_event
-import wikipediaapi
 import re
+import wikipediaapi
 from decouple import config
-from voice_assistant_helper import write_to_file
+from _04_dialog_manager.event import subscribe, post_event
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
+from voice_assistant_helper import write_to_file
 
-REGEX_FIND_PARENTHESIS_PAIRS = "\(.*?\)"
+REGEX_FIND_PARENTHESIS_PAIRS = "\\(.*?\\)"
 
 def handle_wikipedia_search_event(slots):
     """
@@ -14,7 +14,7 @@ def handle_wikipedia_search_event(slots):
     """
     if len(slots) == 0:
         response = "Zu deinem Suchbegriff konnte leider nichts gefunden werden!"
-        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
+        write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
         return
 
     search_term = slots['term']
@@ -38,7 +38,7 @@ def handle_wikipedia_search_event(slots):
         # nothing was found for search_term from entries or no entry was found
         if wikipedia_page.exists() or not new_search_term:
             response = f"Zu dem Suchbegriff {search_term} existiert leider kein Wikipedia-Eintrag!"
-            write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response) 
+            write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
             return
         ###LEARNING###
 
@@ -46,7 +46,7 @@ def handle_wikipedia_search_event(slots):
     page_summary = re.sub(REGEX_FIND_PARENTHESIS_PAIRS, "", page_summary)
 
     first_sentence = page_summary.split('.')[0]
-    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence) 
+    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = first_sentence)
 
     ###Learning###
     post_event("start_learning", 2)
@@ -54,6 +54,6 @@ def handle_wikipedia_search_event(slots):
 
 def setup_wikipedia_event_handlers():
     """
-    subcribes all events 
+    subcribes all events
     """
     subscribe("search_definition", handle_wikipedia_search_event)

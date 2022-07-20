@@ -1,9 +1,9 @@
-from _04_dialog_manager.event import post_event, subscribe
-from pyradios import RadioBrowser
 import random
-from voice_assistant_helper import write_to_file
+from pyradios import RadioBrowser
 from decouple import config
+from _04_dialog_manager.event import post_event, subscribe
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
+from voice_assistant_helper import write_to_file
 
 def handle_play_radio_station_event(slots):
     """
@@ -32,7 +32,7 @@ def handle_play_radio_station_event(slots):
             # check if something in entries was found
             if new_station_name:
                 radio_station = radio_browser.search(name = new_station_name, name_exact = True)
-            
+
             # nothing was found for radio_station from entries or no entry was found
             if not radio_station or not new_station_name:
                 response = f"Der Radiosender {station_name} existiert leider nicht!"
@@ -45,7 +45,7 @@ def handle_play_radio_station_event(slots):
     print(station_url)
 
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = station_url)
-    
+
     ###Learning###
     post_event("start_learning", 2)
     ###Learning###

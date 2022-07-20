@@ -1,5 +1,5 @@
-from _04_dialog_manager.event import subscribe
 from decouple import config
+from _04_dialog_manager.event import subscribe
 from voice_assistant_helper import write_to_file
 
 def handle_none_event(slots = None):
@@ -12,6 +12,6 @@ def handle_none_event(slots = None):
 
 def setup_none_event_handlers():
     """
-    subcribes all events 
+    subcribes all events
     """
     subscribe("none", handle_none_event)

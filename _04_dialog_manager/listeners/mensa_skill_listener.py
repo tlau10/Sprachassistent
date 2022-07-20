@@ -1,7 +1,7 @@
-from _04_dialog_manager.event import subscribe
-from voice_assistant_helper import read_json_file, write_to_file
 from datetime import date, timedelta
 from decouple import config
+from _04_dialog_manager.event import subscribe
+from voice_assistant_helper import read_json_file, write_to_file
 
 JSON_FILE_PATH = "_04_dialog_manager/mensa_parser/menue.json"
 
@@ -29,7 +29,7 @@ def handle_menue_search_event(slots):
     menue_descriptions = dict()
     for key,value in menue_of_day['Menu'].items():
         menue_descriptions[key] = value['Description']
-    
+
     # remove menues, who are currently not needed
     try:
         del menue_descriptions['Pastastand vegetarisch']
@@ -40,7 +40,7 @@ def handle_menue_search_event(slots):
     print(menue_descriptions)
 
     # generate text
-    response = [f"{key} {menue_descriptions[key]}" for key in menue_descriptions]
+    response = [f"{key} {value}" for key, value in menue_descriptions.items()]
 
     chosen_menue = slots.get('menue')
     available_menues = ["Seezeit-Teller", "hin&weg", "KombinierBar", "Pastastand"]
@@ -49,18 +49,20 @@ def handle_menue_search_event(slots):
     else:
         response = "".join(response)
 
-    response = f"Am {date_} gibt es {response}" if response is not None else f"Am {date_} gibt es leider kein {chosen_menue} Menü"
+    response = f"Am {date_} gibt es {response}" if response is not None else \
+        f"Am {date_} gibt es leider kein {chosen_menue} Menü"
     write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
 
 def get_date_of_day_by_name(day_name):
     """
     calculates date of given day by name depending on current day
-    e.g. day_name="Mittwoch", current_day="12.05.2022" (Donnerstag), 
+    e.g. day_name="Mittwoch", current_day="12.05.2022" (Donnerstag),
     returns "18.05.2022" (date of next wednesday)
     @param day_name: name of day
     @return: tuple (date as dd.mm, index of date) of given day_name
     """
-    days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 'samstag' : 5, 'sonntag' : 6}
+    days = {'montag' : 0, 'dienstag' : 1, 'mittwoch' : 2, 'donnerstag' : 3, 'freitag' : 4, 
+        'samstag' : 5, 'sonntag' : 6}
     date_format = "%d.%m"
 
     # return current day if no day_name was given or if it is "heute"

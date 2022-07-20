@@ -1,5 +1,5 @@
-from _04_dialog_manager.event import post_event, subscribe
 from decouple import config
+from _04_dialog_manager.event import post_event, subscribe
 from voice_assistant_helper import write_to_file
 
 def handle_stop_event(slots = None):
@@ -15,6 +15,6 @@ def handle_stop_event(slots = None):
 
 def setup_stop_event_handlers():
     """
-    subcribes all events 
+    subcribes all events
     """
     subscribe("stop", handle_stop_event)

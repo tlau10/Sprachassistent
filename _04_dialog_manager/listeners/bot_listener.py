@@ -1,7 +1,8 @@
-from _04_dialog_manager.event import subscribe
-from voice_assistant_helper import append_to_file, read_from_file_by_line
-from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import extract_slots_and_convert_to_dict, generate_request_string
 from decouple import config
+from voice_assistant_helper import append_to_file, read_from_file_by_line
+from _04_dialog_manager.event import subscribe
+from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import \
+    extract_slots_and_convert_to_dict, generate_request_string
 
 DIALOG_MANAGER_DATA = config('DIALOG_MANAGER_DATA_PATH')
 REQUEST_OUTPUT_FILE = config('BOT_REQUESTS')
@@ -13,7 +14,7 @@ def handle_start_learning_event(scenario = None):
     covers the following scenarios
     scenario 1: last line is stop intent and <= time_limit to second last
     scenario 2: last two lines are from same intent and <= time_limit to second last
-    scenario 3: nothing was found for slot value 
+    scenario 3: nothing was found for slot value
     in all scenarios: write request for each slot to requests.txt
     @param scenario: scenario from which event was startet
     """
@@ -68,9 +69,9 @@ def handle_start_learning_event(scenario = None):
         requests = generate_request_string(data = (second_last_line_parts[0], slots))
         for request in requests:
             append_to_file(file_path = REQUEST_OUTPUT_FILE, text = f"{request}\n")
-        
+ 
 def setup_bot_event_handlers():
     """
-    subcribes all events 
+    subcribes all events
     """
     subscribe("start_learning", handle_start_learning_event)
