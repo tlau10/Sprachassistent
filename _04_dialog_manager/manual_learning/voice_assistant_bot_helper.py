@@ -66,7 +66,6 @@ def lookup_entry():
         return new_slot_value
     except StopIteration:
         key_index = None
-        return
 
 def generate_request_string(data):
     """

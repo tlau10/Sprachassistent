@@ -4,7 +4,7 @@ import vlc
 from voice_assistant_helper import read_from_file
 
 class TextToSpeech:
-    
+
     def __init__(self):
         self.picotts = Pico(language = 'de-DE')
         self.wav_output_path = config('TTS_OUTPUT_PATH')
@@ -61,11 +61,10 @@ class VLCAudio:
         """
         if self.audio_player:
             self.audio_player.play()
-    
+
     def stop_audio_player(self):
         """
         stops the audio player
         """
         if self.audio_player:
             self.audio_player.stop()
-
