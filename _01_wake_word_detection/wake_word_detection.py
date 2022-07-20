@@ -1,8 +1,8 @@
-import pvporcupine
-from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_from_file
 from datetime import datetime
-from decouple import config
 import platform
+import pvporcupine
+from decouple import config
+from voice_assistant_helper import get_next_audio_frame, play_notification_sound, read_from_file
 
 class WakeWordDetection:
 
