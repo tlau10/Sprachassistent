@@ -151,7 +151,7 @@ class Audio:
 
     def read_resampled(self):
         """Return a block of audio data resampled to 16000hz, blocking if necessary."""
-        return self.resample(data=self.buffer_queue.get()) 
+        return self.resample(data=self.buffer_queue.get())
 
     def read(self):
         """Return a block of audio data, blocking if necessary."""
