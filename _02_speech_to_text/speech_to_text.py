@@ -1,6 +1,6 @@
 """
 Partly taken from Mozilla DeepSpeech
-GitHub repository: 
+GitHub repository:
 https://github.com/mozilla/DeepSpeech-examples/blob/r0.9/mic_vad_streaming/README.rst
 """
 import logging
@@ -67,7 +67,7 @@ class SpeechToText:
                 logging.debug("streaming frame")
                 stream_context.feedAudioContent(np.frombuffer(frame, np.int16))
             else:
-                if spinner: 
+                if spinner:
                     spinner.stop()
                 logging.debug("end utterence")
                 text = stream_context.finishStream()
@@ -98,7 +98,7 @@ class Audio:
     BLOCKS_PER_SECOND = 50
 
     def __init__(self, callback=None, device=None, input_rate=RATE_PROCESS, file=None):
-        def proxy_callback(in_data, frame_count, time_info, status):
+        def proxy_callback(in_data):
             if self.chunk is not None:
                 in_data = self.wave_file.readframes(self.chunk)
             callback(in_data)
@@ -133,7 +133,7 @@ class Audio:
         self.stream = self.pyaudio.open(**kwargs)
         self.stream.start_stream()
 
-    def resample(self, data, input_rate):
+    def resample(self, data):
         """
         Microphone may not support our native processing sampling rate, so
         resample from input_rate to RATE_PROCESS here for webrtcvad and
@@ -151,14 +151,14 @@ class Audio:
 
     def read_resampled(self):
         """Return a block of audio data resampled to 16000hz, blocking if necessary."""
-        return self.resample(data=self.buffer_queue.get(),
-                             input_rate=self.input_rate)
+        return self.resample(data=self.buffer_queue.get()) 
 
     def read(self):
         """Return a block of audio data, blocking if necessary."""
         return self.buffer_queue.get()
 
     def destroy(self):
+        """closes pyaudio stream"""
         self.stream.stop_stream()
         self.stream.close()
         self.pyaudio.terminate()
@@ -166,6 +166,11 @@ class Audio:
     frame_duration_ms = property(lambda self: 1000 * self.block_size // self.sample_rate)
 
     def write_wav(self, filename, data):
+        """
+        writes data to wav file
+        @param filename: name of file
+        @param data: audio data to write to file
+        """
         logging.info("write wav %s", filename)
         wave_file = wave.open(filename, 'wb')
         wave_file.setnchannels(self.CHANNELS)
@@ -193,7 +198,7 @@ class VADAudio(Audio):
                 yield self.read_resampled()
 
     def vad_collector(self, padding_ms=300, ratio=0.75, frames=None):
-        """Generator that yields series of consecutive audio frames comprising each utterence, 
+        """Generator that yields series of consecutive audio frames comprising each utterence,
         separated by yielding a single None.
         Determines voice activity by ratio of frames in padding_ms.
         Uses a buffer to include padding_ms prior to being triggered.
