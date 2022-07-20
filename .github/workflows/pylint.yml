@@ -16,9 +16,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        sudo apt-get install libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev portaudio19-dev python-all-dev gcc npm python3-pip git vlc
         python -m pip install --upgrade pip
         pip install pylint
         pip install -r pip_requirements.txt
+        python -m snips_nlu download de
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
