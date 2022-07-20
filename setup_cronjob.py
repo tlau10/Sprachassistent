@@ -1,5 +1,5 @@
-from crontab import CronTab
 import os
+from crontab import CronTab
 
 # setups and shedules cronjob to receive latest mensa data
 USER = os.getlogin()
