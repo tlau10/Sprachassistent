@@ -1,7 +1,9 @@
 # Project
 
 ## Installation
-[Installation manual](https://github.com/tlau10/voice_assistant_katja/wiki/Installation)
+[Installation manual for Linux and Raspberry Pi](https://github.com/tlau10/voice_assistant_katja/wiki/Installation-Linux-und-Raspberry-Pi)
+
+[Installation manual for Windows](https://github.com/tlau10/voice_assistant_katja/wiki/Installation-Windows)
 
 ## Documentation
 
@@ -20,7 +22,7 @@
 #### 1.1 Geschäftlicher Kontext
 
 * Das System soll als Prototyp für einen datensparsamenSprachassistenten dienen.
-* Das System soll in der Lage sein über Feedback des Nutzerszu lernen.
+* Das System soll in der Lage sein über Feedback des Nutzers zu lernen.
 
 
 #### 1.2 Systemüberblick
