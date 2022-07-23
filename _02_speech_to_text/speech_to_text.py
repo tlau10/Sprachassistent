@@ -98,7 +98,7 @@ class Audio:
     BLOCKS_PER_SECOND = 50
 
     def __init__(self, callback=None, device=None, input_rate=RATE_PROCESS, file=None):
-        def proxy_callback(in_data):
+        def proxy_callback(in_data, *unused):
             if self.chunk is not None:
                 in_data = self.wave_file.readframes(self.chunk)
             callback(in_data)

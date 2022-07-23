@@ -32,8 +32,7 @@ class VoiceAssistant:
         starts voice assistant bot in a new Process
         """
         cmd = f"python {config('BOT')}"
-        with subprocess.Popen(cmd, shell = True):
-            pass
+        subprocess.Popen(cmd, shell = True);
 
     def data_cleanup(self):
         """
