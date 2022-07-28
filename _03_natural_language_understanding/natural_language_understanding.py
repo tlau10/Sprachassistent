@@ -1,7 +1,8 @@
 from snips_nlu import SnipsNLUEngine
 from snips_nlu.default_configs import CONFIG_DE
 from decouple import config
-from voice_assistant_helper import read_from_file, read_json_file, write_json_file
+import json
+from voice_assistant_helper import read_json_file
 
 class NLU:
 
@@ -12,11 +13,13 @@ class NLU:
 
     def start(self, phrase):
         """
-        start parsing text file, generates json file
+        start parsing text
+        @param phrase: recognized phrase
+        @return: intent with slots as json object
         """
-        result_json = self.snips.engine.parse(text = phrase)
-
-        write_json_file(file_path = config('NLU_OUTPUT_PATH'), json_object = result_json)
+        intent = self.snips.engine.parse(text = phrase)
+        print(json.dumps(intent, indent = 2))
+        return intent 
 
 class Snips:
 

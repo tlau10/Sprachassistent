@@ -15,7 +15,6 @@ import webrtcvad
 from halo import Halo
 from scipy import signal
 from decouple import config
-from voice_assistant_helper import write_to_file
 
 logging.basicConfig(level=20)
 
@@ -37,7 +36,7 @@ class SpeechToText:
 
     def start(self):
         """
-        start streaming audio using vad, generates text file with recognized phrase
+        start streaming audio using vad
         @return: recognized phrase
         """
         if platform.system() == "Linux" or platfrom.system() == "Windows":

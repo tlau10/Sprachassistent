@@ -10,12 +10,11 @@ class DialogManager:
         # setup all event handlers
         setup_event_handlers()
 
-    def start(self):
+    def start(self, intent):
         """
-        reads json file from nlu, extracts data and calls execute method depending on found intent
+        extracts data and calls execute method depending on found intent
+        @param intent: recognized intent
         """
-        intent = read_json_file(file_path = config('NLU_OUTPUT_PATH'))
-
         intent_name = intent['intent']['intentName']
         slots = intent['slots']
 
