@@ -22,7 +22,11 @@ def handle_menue_search_event(slots):
 
     # retrieve json object for calculated date
     menue = read_json_file(file_path = JSON_FILE_PATH)
-    menue_of_day = menue[date_]
+    menue_of_day = menue.get(date_)
+
+    if not menue_of_day:
+        response = f"Für den {date_} ist noch kein Menü verfügbar"
+        return response
 
     # retrieve menue descriptions
     menue_descriptions = dict()
