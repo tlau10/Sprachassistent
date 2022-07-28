@@ -10,12 +10,11 @@ class NLU:
         dataset = read_json_file(file_path = config('NLU_DATASET_PATH'))
         self.snips.engine.fit(dataset = dataset)
 
-    def start(self):
+    def start(self, phrase):
         """
         start parsing text file, generates json file
         """
-        stt_output = read_from_file(file_path = config('STT_OUTPUT_PATH'))
-        result_json = self.snips.engine.parse(text = stt_output)
+        result_json = self.snips.engine.parse(text = phrase)
 
         write_json_file(file_path = config('NLU_OUTPUT_PATH'), json_object = result_json)
 

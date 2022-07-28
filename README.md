@@ -71,14 +71,11 @@ Paket. Mit ersterem lässt sich der Bot jedochdeutlich einfacher und
 ### 3. Systemdekomposition 
 
 #### 3.1 Lösungsansätze und wichtige Architekturentscheidungen
-Als Architekturstil wurde Batch-Sequential gewählt. Bei Batch-Sequential ist das System 
-in einzelne, voneinander unabhängige Komponenten unterteilt. Diese laufen in einer 
-vorgegeben Sequenz abund tauschen Daten untereinander, ausschließlich über 
-temporäre Dateien, aus. Dieser Architekturstil wurde gewählt, da er die 
-Wiederverwendbarkeit erhöht und einzelne Komponenten einfacher ausgetauscht werden können, sollten später Technologien ersetzt werden. Auch der Data Repository Architekturstil wäre hier denkbar gewesen,um stattdessen Daten über eine zentrale Datenbank auszutauschen.Da der sequentielle Ablauf das heißt, dass eine Komponente erst startet sobald die vorherige beendet ist, eine so zentrale Rolle spielt,lässt sich dies mit dem Batch-Sequential Architekturstil jedoch besser darstellen. In Abbildung 9 wird dieser sequentielle Ablauf, an einem Beispiel, genauer erläutert.Als Aktivierungswort wurde „Ok Katja“ bzw. „Okay Katja“ gewählt. Inspiriert wurde dies von „Ok Google“, da es sich hier um ein sehr gutes Aktivierungswort handelt. Es besteht wie die meisten Aktivierungswörter aus drei Silben und besitzt eine ausreichende Anzahl an verschiedenen Phonemen. Außerdem gibt es nur wenige Worte die ähnlich klingen. Währenddessen reduziert das vorgeschobene „Ok“ weiter die Wahrscheinlichkeit eines falschen Alarms. Da der Sprachassistent auf Datensicherheit ausgelegt ist, wäre ein falsch-positiver Alarm besonders problematisch. Hier würde sonst ungewoll tmitgehört werden.
-Da es das Mozilla Deepspeech Aarch64 Python-Wheel für denRaspberry Pi leider nur bis 
-Python-Version 3.7 gibt wurde hier dieVersion 3.7 verwendet, obwohl bereits die 
-Python-Version 3.10.4 ver-fügbar ist.
+Das System ist in einzelne, voneinander unabhängige Komponenten unterteilt. Diese laufen in einer vorgegeben Sequenz ab und tauschen Daten über Funktionsaufrufe aus.
+Dieser Architekturstil wurde gewählt, da er die Wiederverwendbarkeit erhöht und einzelne Komponenten einfacher ausgetauscht werden können, sollten später Technologien ersetzt werden. In Abbildung 9 wird der sequentielle Ablauf, an einem Beispiel, genauer erläutert. Als Aktivierungswort wurde „Ok Katja“ bzw. „Okay Katja“ gewählt. Inspiriert wurde dies von „Ok Google“, da es sich hier um ein sehr gutes Aktivierungswort handelt. Es besteht wie die meisten Aktivierungswörter aus drei Silben und besitzt eine ausreichende Anzahl an verschiedenen Phonemen. Außerdem gibt es nur wenige Worte die ähnlich klingen. Währenddessen reduziert das vorgeschobene „Ok“ weiter die Wahrscheinlichkeit eines falschen Alarms. Da der Sprachassistent auf Datensicherheit ausgelegt ist, wäre ein falsch-positiver Alarm besonders problematisch. Hier würde sonst ungewoll tmitgehört werden.
+
+
+Da es das Mozilla Deepspeech Aarch64 Python-Wheel für denRaspberry Pi leider nur bis Python-Version 3.7 gibt wurde hier dieVersion 3.7 verwendet, obwohl bereits die Python-Version 3.10.4 ver-fügbar ist.
 
 #### 3.2 Systenstruktur
 

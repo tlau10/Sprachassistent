@@ -29,17 +29,16 @@ class SpeechToText:
             model_path = config('STT_MODEL_PATH_PI')
 
         scorer_path = config('STT_SCORER_PATH')
-        text_output_path = config('STT_OUTPUT_PATH')
 
         self.deep_speech = DeepSpeech(
             model_path = model_path,
             scorer_path = scorer_path,
-            text_output_path = text_output_path)
+            text_output_path = None)
 
     def start(self):
         """
-        start streaming audio using vad, generates text file with recognized phrase,
-        saves audio to wav file
+        start streaming audio using vad, generates text file with recognized phrase
+        @return: recognized phrase
         """
         if platform.system() == "Linux" or platfrom.system() == "Windows":
             rate = 16000
@@ -72,8 +71,7 @@ class SpeechToText:
                 logging.debug("end utterence")
                 text = stream_context.finishStream()
                 print(f"speech-to-text recognized: {text}")
-                write_to_file(file_path = text_path, text = text)
-                return
+                return text
 
 class DeepSpeech:
 

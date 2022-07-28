@@ -21,8 +21,8 @@ class VoiceAssistant:
         """
         while True:
             self.wake_word_detection.start()
-            self.speech_to_text.start()
-            self.nlu.start()
+            phrase = self.speech_to_text.start()
+            self.nlu.start(phrase = phrase)
             self.dialog_manager.start()
             self.text_to_speech.start()
             self.data_cleanup()
@@ -39,7 +39,7 @@ class VoiceAssistant:
         removes all generated files after the user request is done
         """
         subprocess.run(["rm", "-f", config('DIALOG_MANAGER_OUTPUT_PATH'), \
-            config('STT_OUTPUT_PATH'), config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')], \
+            config('NLU_OUTPUT_PATH'), config('TTS_OUTPUT_PATH')], \
                 check = True)
 
 if __name__ == "__main__":
