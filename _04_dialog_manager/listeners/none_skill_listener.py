@@ -1,4 +1,3 @@
-from decouple import config
 from _04_dialog_manager.event import subscribe
 
 def handle_none_event(slots = None):

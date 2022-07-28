@@ -1,7 +1,7 @@
+import json
 from snips_nlu import SnipsNLUEngine
 from snips_nlu.default_configs import CONFIG_DE
 from decouple import config
-import json
 from voice_assistant_helper import read_json_file
 
 class NLU:
@@ -19,7 +19,7 @@ class NLU:
         """
         intent = self.snips.engine.parse(text = phrase)
         print(json.dumps(intent, indent = 2))
-        return intent 
+        return intent
 
 class Snips:
 

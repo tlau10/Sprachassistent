@@ -1,4 +1,3 @@
-from decouple import config
 from _04_dialog_manager.event import post_event, subscribe
 
 def handle_stop_event(slots = None):
@@ -7,11 +6,11 @@ def handle_stop_event(slots = None):
     @param slots: empty placeholder
     @return: empty response
     """
-    return ""
-
     ###Learning###
     post_event("start_learning", 1)
     ###Learning###
+
+    return ""
 
 def setup_stop_event_handlers():
     """

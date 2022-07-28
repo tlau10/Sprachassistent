@@ -1,5 +1,4 @@
 from datetime import date, timedelta
-from decouple import config
 from _04_dialog_manager.event import subscribe
 from voice_assistant_helper import read_json_file
 

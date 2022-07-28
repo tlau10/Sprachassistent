@@ -1,6 +1,5 @@
 import re
 import wikipediaapi
-from decouple import config
 from _04_dialog_manager.event import subscribe, post_event
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
 

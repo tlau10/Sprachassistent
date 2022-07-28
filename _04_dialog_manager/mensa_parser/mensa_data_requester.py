@@ -18,11 +18,11 @@ def execute_js():
     reads html from file then executes getData() JS function,
     generates json file with menue as output
     """
-    js = read_from_file(file_path = JS_FILE_PATH)
+    js_code = read_from_file(file_path = JS_FILE_PATH)
     html = read_from_file(file_path = HTML_FILE_PATH)
 
     # compile JS and call function
-    js_ctx = execjs.compile(source = js)
+    js_ctx = execjs.compile(source = js_code)
     json_object = js_ctx.call("getData", html)
 
     # generate dict of json objects 'date' : 'object'

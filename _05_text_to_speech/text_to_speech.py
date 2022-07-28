@@ -1,7 +1,6 @@
 from decouple import config
 from picotts import PicoTTS
 import vlc
-from voice_assistant_helper import read_from_file
 
 class TextToSpeech:
 

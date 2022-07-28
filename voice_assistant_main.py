@@ -34,7 +34,7 @@ class VoiceAssistant:
         starts voice assistant bot in a new Process
         """
         cmd = f"python {config('BOT')}"
-        subprocess.Popen(cmd, shell = True);
+        subprocess.Popen(cmd, shell = True)
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()

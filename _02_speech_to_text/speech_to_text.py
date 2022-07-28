@@ -57,7 +57,6 @@ class SpeechToText:
         # Stream from microphone to DeepSpeech using VAD
         spinner = Halo(spinner='line')
         stream_context = self.deep_speech.engine.createStream()
-        text_path = self.deep_speech.text_output_path
         for frame in frames:
             if frame is not None:
                 if spinner:

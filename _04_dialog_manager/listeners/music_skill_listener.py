@@ -1,6 +1,5 @@
 import random
 from pyradios import RadioBrowser
-from decouple import config
 from _04_dialog_manager.event import post_event, subscribe
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
 
@@ -43,11 +42,11 @@ def handle_play_radio_station_event(slots):
 
     print(station_url)
 
-    return station_url
-
     ###Learning###
     post_event("start_learning", 2)
     ###Learning###
+
+    return station_url
 
 def setup_music_event_handlers():
     """
