@@ -25,12 +25,11 @@ class DialogManager:
 
         # no intent matched
         if not intent_name:
-            post_event("none", slot_values)
-            return
+            return post_event("none", slot_values)
 
         ###Learning###
         request = f"{intent_name} {str(slot_values)} {time.time()}\n"
         append_to_file(file_path = config('DIALOG_MANAGER_DATA_PATH'), text = request)
         ###Learning###
 
-        post_event(intent_name, slot_values)
+        return post_event(intent_name, slot_values)

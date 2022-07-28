@@ -18,4 +18,4 @@ def post_event(event, data):
     if not event in subscribers:
         return
     for function in subscribers[event]:
-        function(data)
+        return function(data)

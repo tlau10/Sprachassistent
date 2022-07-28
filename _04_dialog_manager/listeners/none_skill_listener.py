@@ -1,14 +1,14 @@
 from decouple import config
 from _04_dialog_manager.event import subscribe
-from voice_assistant_helper import write_to_file
 
 def handle_none_event(slots = None):
     """
-    writes output to file
+    handles none intent
     @param slots: empty placeholder
+    @return: response text
     """
     response = "Ich kann dir leider nicht weiterhelfen"
-    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
+    return response
 
 def setup_none_event_handlers():
     """

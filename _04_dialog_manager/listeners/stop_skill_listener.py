@@ -1,13 +1,13 @@
 from decouple import config
 from _04_dialog_manager.event import post_event, subscribe
-from voice_assistant_helper import write_to_file
 
 def handle_stop_event(slots = None):
     """
-    writes empty output to file
+    handles stop intent
     @param slots: empty placeholder
+    @return: empty response
     """
-    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = "")
+    return ""
 
     ###Learning###
     post_event("start_learning", 1)

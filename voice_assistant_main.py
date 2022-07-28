@@ -26,9 +26,8 @@ class VoiceAssistant:
 
             intent = self.nlu.start(phrase = phrase)
 
-            self.dialog_manager.start(intent = intent)
-            self.text_to_speech.start()
-            self.data_cleanup()
+            response = self.dialog_manager.start(intent = intent)
+            self.text_to_speech.start(response = response)
 
     def start_bot(self):
         """
@@ -36,13 +35,6 @@ class VoiceAssistant:
         """
         cmd = f"python {config('BOT')}"
         subprocess.Popen(cmd, shell = True);
-
-    def data_cleanup(self):
-        """
-        removes all generated files after the user request is done
-        """
-        subprocess.run(["rm", "-f", config('DIALOG_MANAGER_OUTPUT_PATH'), \
-            config('TTS_OUTPUT_PATH')], check = True)
 
 if __name__ == "__main__":
     voice_assistant = VoiceAssistant()

@@ -3,12 +3,12 @@ from pyradios import RadioBrowser
 from decouple import config
 from _04_dialog_manager.event import post_event, subscribe
 from _04_dialog_manager.manual_learning.voice_assistant_bot_helper import lookup_entry
-from voice_assistant_helper import write_to_file
 
 def handle_play_radio_station_event(slots):
     """
-    retrieves stream url from radio browser api then writes output to file
+    retrieves stream url from radio browser api then returns response
     @param slots: dict of recognized slot values 'slotName' : 'slotValue'
+    @return: response, either url or text
     """
     radio_browser = RadioBrowser()
 
@@ -36,15 +36,14 @@ def handle_play_radio_station_event(slots):
             # nothing was found for radio_station from entries or no entry was found
             if not radio_station or not new_station_name:
                 response = f"Der Radiosender {station_name} existiert leider nicht!"
-                write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = response)
                 post_event("start_learning", 3)
-                return
+                return response
             ###Learning###
         station_url = radio_station[0]['url']
 
     print(station_url)
 
-    write_to_file(file_path = config('DIALOG_MANAGER_OUTPUT_PATH'), text = station_url)
+    return station_url
 
     ###Learning###
     post_event("start_learning", 2)

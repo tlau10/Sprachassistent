@@ -119,7 +119,7 @@ umsetzt. Die Funktion generiert wiederum neuen Output, welche die TTS-Komponente
 anschließend verarbeitet.
 
 Im Falle des Mensa-Intents generiert die TTS aus dem Antworttext eine Audio-Datei, die dann über 
-den Audio-Ouput-Stream abgespielt wird.Während das Audio noch abgespielt wird, kann die 
+den Audio-Ouput-Stream abgespielt wird. Während das Audio noch abgespielt wird, kann die 
 WWD-Komponente erneut auf den Audio-Input-Stream hören. Somit wird gewährleistet, dass der 
 Sprachassistent jederzeit gestoppt oder einfach einneuer Sprachbefehl geäußert werden kann. Wie der 
 Datenaustausch der einzelnen Komponenten aussieht, wird in [Abbildung 12](#34-datenmodell) genauer erklärt.
@@ -151,9 +151,8 @@ generieren kann also unterschiedliche Ergebnisse erzeugen.
 ![Datenmodell](documentation/datenmodell.drawio.png)
 
 Das Diagramm zeigt den Austausch von Daten zwischen den einzelnen Komponenten zur 
-Laufzeit. Die Komponenten tauschen nie direkt Daten miteinander aus, sondern 
-schreiben ihren Output immer in eine Datei. Für die nachfolgende Komponente ist 
-diese dann der Input. Die TTS-Komponente erhält im Falle des Musik-Skills eine URL, 
+Laufzeit. Die Komponenten tauschen Daten indirekt über Funktionsaufrufe miteinander aus. Für die nachfolgende Komponente ist 
+der Ruckgabewert dann der Input. Die TTS-Komponente erhält im Falle des Musik-Skills eine URL, 
 während für die anderen Skills immer eine Audio-Datei aus dem Antworttext generiert 
 wird.
 
@@ -174,8 +173,8 @@ Die Klasse „VoiceAssistant“ orchestriert das komplette System. Die rötlich 
 Klassen in den Komponenten, sind die Oberklassen. Diese werden in der Klasse 
 „VoiceAssistant“ instanziiert und der Reihe nach gestartet. Gestartet wird eine 
 Komponente durch aufrufender „start()“-Methode. Mit Ausnahme der WWD-Komponente, 
-werden dadurch immer Daten aus einer Datei eingelesen, verarbeitet und anschließend 
-der Output wieder in eine Datei geschrieben. Erst wenn die vorangegangene Komponente 
+werden dadurch immer Daten übergeben, verarbeitet und anschließend 
+der Output wieder zurückgegeben. Erst wenn die vorangegangene Komponente 
 beendet ist, kann die nächste gestartet werden.
 
 #### 3.6 Deployment und Betrieb

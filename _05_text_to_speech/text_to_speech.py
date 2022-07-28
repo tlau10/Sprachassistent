@@ -8,27 +8,28 @@ class TextToSpeech:
     def __init__(self):
         self.picotts = Pico(language = 'de-DE')
         self.wav_output_path = config('TTS_OUTPUT_PATH')
-        self.dialog_manager_output_path = config('DIALOG_MANAGER_OUTPUT_PATH')
         self.vlc_audio_player = VLCAudio()
 
-    def start(self):
+    def start(self, response):
         """
         reads output file from dialog manager and either generates wav file or sets up http stream,
         then plays audio using vlc
         """
-        dialog_manager_output = read_from_file(file_path = self.dialog_manager_output_path)
-        print(dialog_manager_output)
+        print(response)
+        if not response:
+            self.vlc_audio_player.stop_audio_player()
+            return
 
         # set uri depending on line
-        if "http" in dialog_manager_output:
+        if "http" in response:
             self.vlc_audio_player.stop_audio_player()
-            self.vlc_audio_player.set_uri(uri = dialog_manager_output)
+            self.vlc_audio_player.set_uri(uri = response)
         else:
             self.vlc_audio_player.stop_audio_player()
             self.vlc_audio_player.set_uri(uri = self.wav_output_path)
 
             # generate wav file
-            audio = self.picotts.engine.synth_wav(txt = dialog_manager_output)
+            audio = self.picotts.engine.synth_wav(txt = response)
             with open(self.wav_output_path, mode = 'bw') as wav:
                 wav.write(audio)
 
