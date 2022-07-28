@@ -101,7 +101,7 @@ Aufgaben der einzelnen Listener:
 * Der Wikipedia-Skill Listener holt sich über die Wikipedia API die Zusammenfassung eines Wikipedia Artikels.
 * Wird der Sprachassistent gestoppt, so wird der Stop-Skill Lis-tener ausgeführt. Der Antworttext ist einfach eine leere Zeichenkette.
 * Wird keiner der bisher genannten Intents erkannt, so wird der None-Skill Listener gestartet. Als Antworttext wird dem Nutzer mitgeteilt, dass der Sprachbefehl nicht umgesetzt werden konnte.
-Alle Skill Listener schreiben ihren Antworttext in eine Datei, die dann von der TTS-Komponente weiterverarbeitet wird.
+Alle Skill Listener geben ihren Antworttext zurück, der dann von der TTS-Komponente weiterverarbeitet wird.
 
 #### 3.3 Sequenzdiagramm
 
