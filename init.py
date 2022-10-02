@@ -1,1 +1,1 @@
-__version__ = "1.0 Bachelorarbeit_20-06"
+__version__ = "1.1"
